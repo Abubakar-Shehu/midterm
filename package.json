@@ -14,16 +14,16 @@
   "author": "Lighthouse Labs",
   "license": "ISC",
   "dependencies": {
-    "chalk": "4.1.2",
-    "concurrently": "8.2.2",
-    "dotenv": "^16.4.7",
+    "chalk": "^4.1.2",
+    "concurrently": "^8.2.2",
+    "dotenv": "^16.6.1",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
-    "morgan": "^1.10.0",
-    "pg": "^8.13.1",
-    "sass": "^1.83.1"
+    "morgan": "^1.10.1",
+    "pg": "^8.16.3",
+    "sass": "^1.89.2"
   },
   "devDependencies": {
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.10"
   }
 }
