@@ -8,13 +8,6 @@
   <meta name="description" content="MapMap lets you do fun stuff with maps." />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
 
-  <!-- Favicon and Icons -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/static/favicons/apple-touch-icon-180x180.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/static/favicons/favicon-32x32.png" />
-  <link rel="manifest" href="/static/favicons/manifest.json" />
-  <link rel="mask-icon" href="/static/favicons/safari-pinned-tab.svg" color="#17b585" />
-  <meta name="msapplication-TileColor" content="#2b5797" />
-
   <!-- MapMap CSS -->
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
@@ -40,9 +33,7 @@
   <div class="menu-right">
     <div id="menu-profile">
       <ul id="menu-profile-items">
-        <li>Signed in as<br><b>your_username</b></li>
-        <li><a href="#">My Profile</a></li>
-        <li><a href="#">Settings</a></li>
+        <li><a href="http://localhost:8080/users">My Profile</a></li>
         <li><a href="#">Log out</a></li>
       </ul>
       <div id="menu-profile-icon" class="menu-profile-icon"></div>
@@ -76,7 +67,7 @@
       <div class="promo-text">
         <h1>Try it out! Create a map!</h1>
         <p>It's as easy as pie</p>
-        <a class="Create" href="http://localhost:8080/create">CREATE MAP NOW</a>
+        <a class="createnow" href="http://localhost:8080/create">CREATE MAP NOW</a>
 
       </div>
       <div class="promo-img">
@@ -86,18 +77,47 @@
   </div>
 
   <!-- explore section -->
-  <div id="explore">
-    <div class="explore">
-      <div class="explore">
-        <h1>Try it out! Create a map!</h1>
-        <p>It's as easy as pie</p>
-        <a class="Create" href="http://localhost:8080/create">CREATE MAP NOW</a>
-      </div>
-      </div>
+ <div id="explore">
+  <div class="explore-inner">
+    <div class="explore-text">
+      <h1>See some of our community made maps here</h1>
+      <p>Have a link of your own? Paste it here</p>
+      <form action="/search" method="GET" class="search-form">
+  <input
+    type="text"
+    name="q"
+    placeholder="Search..."
+    aria-label="Search"
+    required
+  />
+  <button type="submit">Search</button>
+</form>
     </div>
   </div>
+</div>
 
-  <!-- Add other promo sections similarly -->
+<!-- Maps JavaScript file -->
+<script src="/scripts/maps2.js"></script>
+<!-- Maps container with 4 columns -->
+<div id="maps-container" class="maps-container">
+  <div class="map">
+    <div class="map-overlay">Map 1</div>
+    <div id="map1" class="map-inner"></div>
+  </div>
+  <div class="map">
+    <div class="map-overlay">Map 2</div>
+    <div id="map2" class="map-inner"></div>
+  </div>
+  <div class="map">
+    <div class="map-overlay">Map 3</div>
+    <div id="map3" class="map-inner"></div>
+  </div>
+  <div class="map">
+    <div class="map-overlay">Map 4</div>
+    <div id="map4" class="map-inner"></div>
+  </div>
+</div>
+
 
   <footer>
     <ul>
@@ -111,7 +131,7 @@
   </footer>
 
   <!-- Main JS -->
-  <script src="/static/js/main.d3157503.js"></script>
+  <script src="/static/js/main.js"></script>
 
 </body>
 

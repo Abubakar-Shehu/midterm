@@ -3,7 +3,7 @@ body, html {
   margin: 0;
   padding: 0;
   font-family: 'Helvetica Neue', sans-serif;
-  background-color: #fff;
+  background-color: #eaeaea;
   color: #333;
   line-height: 1.6;
   scroll-behavior: smooth;
@@ -43,19 +43,28 @@ body, html {
 }
 
 /* --- Navigation menu --- */
+#menu {
+  background-color: #1c5040;
+  color: white;
+}
+#menu a {
+  color: white;
+}
 .menu-inner {
   display: flex;
-  justify-content: space-between; /* push left and right apart */
-  align-items: center;            /* vertical center */
-  height: 60px;                   /* or whatever height */
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
   padding: 0 10px;
+  padding-left: 15%;
 }
 
-/* Wrap profile and nav in a container if you don’t have one */
+/* Wrap profilee */
 .menu-right {
   display: flex;
   align-items: center;
-  gap: 20px; /* spacing between profile and nav */
+  gap: 20px;
+  padding-right: 15%;
 }
 
 /* Remove absolute positioning */
@@ -67,11 +76,10 @@ body, html {
 /* Make profile items horizontal */
 #menu-profile-items {
   display: flex;
-  gap: 15px;
+  gap: 20px;
   list-style: none;
   margin: 0;
   padding: 5px 10px;
-  background: rgba(255, 255, 255, 0.9);
   border-radius: 5px;
   align-items: center;
 }
@@ -92,15 +100,21 @@ body, html {
   align-items: center;
   padding: 60px 10%;
   flex-wrap: wrap;
+  background-color: #adadad;
 }
 
 .promo-text {
-  flex: 1 1 400px;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.promo-text h1 {
+  text-align: center;
+}
+.promo-text p {
+  text-align: center;
 }
 
 .promo-img {
-  flex: 1 1 400px;
   padding: 20px;
 }
 
@@ -123,45 +137,6 @@ body, html {
   margin-top: 20px;
 }
 
-/* Footer */
-footer {
-  background-color: #f8f8f8;
-  text-align: center;
-  padding: 20px;
-  font-size: 0.9rem;
-}
-
-footer ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-footer li {
-  display: inline-block;
-  margin: 0 10px;
-  color: #666;
-}
-
-footer a {
-  color: #666;
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
-}
-#menu-profile-items {
-  display: flex;
-  gap: 20px;
-  list-style: none;
-  margin: 0;
-  padding: 5px 10px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 5px;
-  align-items: center;
-}
-
 #menu-profile-items li {
   display: flex;
   flex-direction: column;
@@ -182,4 +157,143 @@ footer a:hover {
   font-weight: 700;
   font-size: 1rem;
   margin-top: 3px;
+}
+.search-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.search-form input {
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.search-form button {
+  padding: 0.5rem 1rem;
+  background-color: #17b585;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.search-form button:hover {
+  background-color: #138e6f;
+}
+#maps-container {
+  display: flex;
+  padding: 20px 10%;
+  flex-wrap: wrap; /* Optional: if you want it responsive */
+}
+.createnow {
+  background-color: #17b585;
+  color: white;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+  text-align: center;
+
+}
+.createnow:hover {
+  background-color: #138e6f;
+}
+.explore-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 10%;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.explore-text {
+  flex: 1 1 400px;
+  padding: 20px;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Optional: vertically center if height is fixed or container is tall */
+}
+
+/* MAP STYLING */
+.map {
+  position: relative;
+  width: calc(25% - 8px); /* 8px = 4px left + 4px right margins */
+  height: 400px;
+  box-sizing: border-box;
+  overflow: hidden;
+  margin: 4px;
+}
+
+.map-inner {
+  width: 100%;
+  height: 100%;
+}
+
+.map-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7); /* semi-transparent white */
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+  font-size: 1.5rem;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+  pointer-events: none; /* ensures it doesn't block map interaction */
+}
+
+.map:hover .map-overlay {
+  opacity: 1;
+}
+.map-description {
+  margin-top: 0.5rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #444;
+  padding: 0 0.5rem;
+  background-color: rgba(255, 255, 255, 0.8); /* optional light bg */
+  border-radius: 4px; /* soften edges */
+}
+
+/* Footer */
+footer {
+  background-color: #2c2c2c;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+footer li {
+  display: inline-block;
+  margin: 0 10px;
+  color: #666;
+}
+
+footer a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }
