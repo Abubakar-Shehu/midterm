@@ -106,7 +106,9 @@ CREATE TABLE points (
 CREATE TABLE maps (
   id SERIAL PRIMARY KEY,
   user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-  name VARCHAR(255) NOT NULL
+  name VARCHAR(255) NOT NULL,
+  longitude NUMERIC(9, 6) NOT NULL,
+  latitude NUMERIC(9, 6) NOT NULL
 );
 
 -- Join table: map <-> point

@@ -8,13 +8,12 @@
 const express = require('express');
 const router  = express.Router();
 const db = require('../db/connection');
+const app = express();
+const mapsQuery = require('../db/queries/maps')
 
 router.get('/', (req, res) => {
-  const query = `SELECT * FROM maps`;
-  console.log(query);
-  db.query(query)
-    .then(data => {
-      const maps = data.rows;
+  mapsQuery.getMaps()
+    .then(maps => {
       res.json({ maps });
     })
     .catch(err => {
@@ -23,5 +22,26 @@ router.get('/', (req, res) => {
         .json({ error: err.message });
     });
 });
+
+
+
+// app.set('view engine', 'ejs');
+// app.use(express.static('public'));
+
+// router.get('/', (req, res) => {
+//   mapsQuery.getMaps()
+//     .then(data => {
+//       const templateVars = { data }
+//       res.render('create', templateVars);
+//     })
+//     .catch(err => {
+//       res
+//         .status(500)
+//         .json({ error: err.message });
+//     });
+// });
+
+// module.exports = router;
+
 
 module.exports = router;

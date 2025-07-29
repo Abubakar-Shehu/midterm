@@ -40,19 +40,19 @@ INSERT INTO users (name, email) VALUES
 
 -- Insert points
 INSERT INTO points (title, description, image) VALUES
-  ('River Valley', 'A scenic riverside walking path.', 'river.jpg'),
+  ('River Valley', 'A scenic riverside walking path in Edmonton.', 'river.jpg'),
   ('Burger Alley', 'A street lined with top burger joints.', 'burgers.jpg'),
-  ('Tech Museum', 'Explore the history of Canadian tech.', 'tech.jpg'),
-  ('Botanical Garden', 'Diverse plant life and peaceful paths.', 'garden.jpg'),
-  ('City Plaza', 'Bustling plaza with entertainment.', 'plaza.jpg');
+  ('Tech Museum', 'Explore the history of Canadian technology.', 'tech.jpg'),
+  ('Botanical Garden', 'Lush garden with diverse plant species.', 'garden.jpg'),
+  ('City Plaza', 'Main plaza filled with local art and performers.', 'plaza.jpg');
 
 -- Insert maps
-INSERT INTO maps (user_id, name) VALUES
-  (1, 'Nature Trails'),
-  (2, 'City Eats'),
-  (3, 'Tech Landmarks');
+INSERT INTO maps (user_id, name, longitude, latitude) VALUES
+  (1, 'Toronto', 43.6532, -79.3832),
+  (2, 'New York', 40.7128, -74.0060),
+  (3, 'London', 51.5074, -0.1278);
 
--- Join points to maps (map_points)
+-- Join points to maps
 INSERT INTO map_points (map_id, point_id) VALUES
   (1, 1),
   (1, 4),

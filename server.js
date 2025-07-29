@@ -22,6 +22,7 @@ app.use(express.static('public'));
 const userApiRoutes = require('./routes/users-api');
 const mapApiRoutes = require('./routes/map-api');
 const usersRoutes = require('./routes/users');
+const createMapRoutes = require('./routes/create');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -29,6 +30,8 @@ const usersRoutes = require('./routes/users');
 app.use('/api/users', userApiRoutes);
 app.use('/api/maps', mapApiRoutes);
 app.use('/users', usersRoutes);
+app.use('/create', createMapRoutes);
+
 // Note: mount other resources here, using the same pattern above
 
 // Home page

@@ -6,7 +6,8 @@
   <meta name="google" content="notranslate" />
   <title>MapMap · Create interactive maps</title>
   <meta name="description" content="MapMap lets you do fun stuff with maps." />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
 
   <!-- MapMap CSS -->
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
@@ -18,35 +19,39 @@
 <body>
 
   <!-- Overlay placeholder -->
-  <div id="overlay-placeholder"><div></div></div>
+  <div id="overlay-placeholder">
+    <div></div>
+  </div>
 
   <!-- Navigation menu -->
   <div id="menu" class="menu-home">
     <div id="menu-hamburger-icon">
-      <div></div><div></div><div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
     <div class="menu-inner">
-  <a class="menu-logo-clickable" href="http://localhost:8080/">
-    <div class="menu-big-site-name">MapMap</div>
-  </a>
+      <a class="menu-logo-clickable" href="http://localhost:8080/">
+        <div class="menu-big-site-name">MapMap</div>
+      </a>
 
-  <div class="menu-right">
-    <div id="menu-profile">
-      <ul id="menu-profile-items">
-        <li><a href="http://localhost:8080/users">My Profile</a></li>
-        <li><a href="#">Log out</a></li>
-      </ul>
-      <div id="menu-profile-icon" class="menu-profile-icon"></div>
+      <div class="menu-right">
+        <div id="menu-profile">
+          <ul id="menu-profile-items">
+            <li><a href="http://localhost:8080/users">My Profile</a></li>
+            <li><a href="#">Log out</a></li>
+          </ul>
+          <div id="menu-profile-icon" class="menu-profile-icon"></div>
+        </div>
+
+        <nav id="menu-pages">
+          <ul>
+            <li><a href="#">My maps</a></li>
+            <li><a href="#">New map</a></li>
+          </ul>
+        </nav>
+      </div>
     </div>
-
-    <nav id="menu-pages">
-      <ul>
-        <li><a href="#">My maps</a></li>
-        <li><a href="#">New map</a></li>
-      </ul>
-    </nav>
-  </div>
-</div>
 
     <div id="menu-cover"></div>
   </div>
@@ -77,46 +82,40 @@
   </div>
 
   <!-- explore section -->
- <div id="explore">
-  <div class="explore-inner">
-    <div class="explore-text">
-      <h1>See some of our community made maps here</h1>
-      <p>Have a link of your own? Paste it here</p>
-      <form action="/search" method="GET" class="search-form">
-  <input
-    type="text"
-    name="q"
-    placeholder="Search..."
-    aria-label="Search"
-    required
-  />
-  <button type="submit">Search</button>
-</form>
+  <div id="explore">
+    <div class="explore-inner">
+      <div class="explore-text">
+        <h1>See some of our community made maps here</h1>
+        <p>Have a link of your own? Paste it here</p>
+        <form action="/search" method="GET" class="search-form">
+          <input type="text" name="q" placeholder="Search..." aria-label="Search" required />
+          <button type="submit">Search</button>
+        </form>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Maps JavaScript file -->
-<script src="/scripts/maps2.js"></script>
-<!-- Maps container with 4 columns -->
-<div id="maps-container" class="maps-container">
-  <div class="map">
-    <div class="map-overlay">Map 1</div>
-    <div id="map1" class="map-inner"></div>
+  <!-- Maps JavaScript file -->
+  <script src="/scripts/maps2.js"></script>
+  <!-- Maps container with 4 columns -->
+  <div id="maps-container" class="maps-container">
+    <div class="map">
+      <div class="map-overlay">Map 1</div>
+      <div id="map1" class="map-inner"></div>
+    </div>
+    <div class="map">
+      <div class="map-overlay">Map 2</div>
+      <div id="map2" class="map-inner"></div>
+    </div>
+    <div class="map">
+      <div class="map-overlay">Map 3</div>
+      <div id="map3" class="map-inner"></div>
+    </div>
+    <div class="map">
+      <div class="map-overlay">Map 4</div>
+      <div id="map4" class="map-inner"></div>
+    </div>
   </div>
-  <div class="map">
-    <div class="map-overlay">Map 2</div>
-    <div id="map2" class="map-inner"></div>
-  </div>
-  <div class="map">
-    <div class="map-overlay">Map 3</div>
-    <div id="map3" class="map-inner"></div>
-  </div>
-  <div class="map">
-    <div class="map-overlay">Map 4</div>
-    <div id="map4" class="map-inner"></div>
-  </div>
-</div>
 
 
   <footer>
@@ -129,9 +128,6 @@
       <li>MAPMAP4eva</li>
     </ul>
   </footer>
-
-  <!-- Main JS -->
-  <script src="/static/js/main.js"></script>
 
 </body>
 
