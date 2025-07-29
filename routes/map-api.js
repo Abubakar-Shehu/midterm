@@ -10,12 +10,12 @@ const router  = express.Router();
 const db = require('../db/connection');
 
 router.get('/', (req, res) => {
-  const query = `SELECT * FROM widgets`;
+  const query = `SELECT * FROM maps`;
   console.log(query);
   db.query(query)
     .then(data => {
-      const widgets = data.rows;
-      res.json({ widgets });
+      const maps = data.rows;
+      res.json({ maps });
     })
     .catch(err => {
       res
