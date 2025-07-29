@@ -1,18 +1,146 @@
+/* Style the body & headings consistent with layout.css */
 body {
+  font-family: 'Helvetica Neue', sans-serif;
+  background-color: #eaeaea;
+  color: #333;
+  margin: 0px;
+  line-height: 1.6;
+  padding: 0;
+}
+
+/* Main heading */
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #1c5040; /* dark green like your menu background */
+}
+
+/* MENU */
+
+#menu {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Button styling similar to .try-button and .createnow */
+#fetch-users {
+  display: block;
+  background-color: #17b585;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 0 auto 20px auto;
+  transition: background-color 0.3s;
+}
+
+#fetch-users:hover {
+  background-color: #138e6f;
+}
+
+/* Users list styling */
+#users {
+  list-style: none;
+  padding: 0;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+#users li {
+  padding: 12px 20px;
+  border-bottom: 1px solid #ddd;
+  font-size: 1.1rem;
+  color: #444;
+}
+
+#users li:last-child {
+  border-bottom: none;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  body {
+    margin: 10px;
+  }
+
+  #users {
+    max-width: 100%;
+  }
+}
+/* Center the entire login container */
+.login {
+  max-width: 400px;        /* limits width for readability */
+  margin: 40px auto;       /* top/bottom margin + auto horizontal centering */
+  background-color: white; /* optional: add background for contrast */
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Center the form elements inside */
+.login form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  gap: 15px;
+}
 
-  background: rgb(163, 208, 219);
-  background: linear-gradient(
-    227deg,
-    rgba(163, 208, 219, 1) 0%,
-    rgba(163, 176, 219, 1) 20%,
-    rgba(163, 173, 219, 1) 34%,
-    rgba(163, 219, 208, 1) 59%,
-    rgba(163, 208, 219, 1) 74%,
-    rgba(163, 208, 219, 1) 100%
-  );
+/* Center text inputs and labels */
+.login label,
+.login input[type="text"],
+.login input[type="password"],
+.login input[type="submit"] {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Center the heading */
+.login h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #1c5040;
+}
+
+/* Style the submit button */
+.login input[type="submit"] {
+  background-color: #17b585;
+  color: white;
+  border: none;
+  padding: 12px 0;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login input[type="submit"]:hover {
+  background-color: #138e6f;
+}
+
+/* Optional: center the "Forgot password?" link */
+.login .forgot-password {
+  display: block;
+  text-align: center;
+  margin: 10px 0;
+  color: #17b585;
+  text-decoration: none;
+}
+
+.login .forgot-password:hover {
+  text-decoration: underline;
+}
+
+/* Center the register notice text */
+.login .register-notice {
+  text-align: center;
+  margin-top: 20px;
 }
