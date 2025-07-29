@@ -1,11 +1,6 @@
 body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-
-  background: rgb(163, 208, 219);
+  margin: 0;
+  font-family: 'Helvetica Neue', sans-serif;
   background: linear-gradient(
     227deg,
     rgba(163, 208, 219, 1) 0%,
@@ -15,4 +10,6 @@ body {
     rgba(163, 208, 219, 1) 74%,
     rgba(163, 208, 219, 1) 100%
   );
+  /* remove display:flex, justify-content, align-items */
+  min-height: 100vh;
 }

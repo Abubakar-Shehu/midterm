@@ -1,6 +1,185 @@
-// See: https://sass-lang.com/
-
-body,
-html {
+/* Reset and base layout */
+body, html {
   margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', sans-serif;
+  background-color: #fff;
+  color: #333;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}
+
+/* Full-screen header section */
+#home-header {
+  background: url('/images/header-bg.jpg') no-repeat center center/cover;
+  color: white;
+  text-align: center;
+  padding: 100px 20px;
+}
+
+#home-header h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+#home-header h2 {
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin-bottom: 2rem;
+}
+
+.try-button {
+  background-color: #17b585;
+  color: white;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.try-button:hover {
+  background-color: #138e6f;
+}
+
+/* --- Navigation menu --- */
+.menu-inner {
+  display: flex;
+  justify-content: space-between; /* push left and right apart */
+  align-items: center;            /* vertical center */
+  height: 60px;                   /* or whatever height */
+  padding: 0 10px;
+}
+
+/* Wrap profile and nav in a container if you don’t have one */
+.menu-right {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* spacing between profile and nav */
+}
+
+/* Remove absolute positioning */
+#menu-profile {
+  position: static; /* or just remove position property */
+  /* optionally add styles */
+}
+
+/* Make profile items horizontal */
+#menu-profile-items {
+  display: flex;
+  gap: 15px;
+  list-style: none;
+  margin: 0;
+  padding: 5px 10px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 5px;
+  align-items: center;
+}
+
+/* Nav ul inline horizontal */
+#menu-pages ul {
+  display: flex;
+  gap: 15px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Promo sections --- */
+.promo-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 10%;
+  flex-wrap: wrap;
+}
+
+.promo-text {
+  flex: 1 1 400px;
+  padding: 20px;
+}
+
+.promo-img {
+  flex: 1 1 400px;
+  padding: 20px;
+}
+
+.promo-img img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Bottom CTA */
+#home-try {
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 80px 20px;
+}
+
+.try-button-bottom {
+  margin-top: 20px;
+}
+
+/* Footer */
+footer {
+  background-color: #f8f8f8;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+footer li {
+  display: inline-block;
+  margin: 0 10px;
+  color: #666;
+}
+
+footer a {
+  color: #666;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+#menu-profile-items {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 5px 10px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 5px;
+  align-items: center;
+}
+
+#menu-profile-items li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  margin: 0 10px;
+}
+
+#menu-profile-items li:first-child {
+  text-align: center;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+#menu-profile-items li:first-child b {
+  display: block;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-top: 3px;
 }
