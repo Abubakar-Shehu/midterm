@@ -8,20 +8,22 @@
 const express = require('express');
 const router  = express.Router();
 const db = require('../db/connection');
+require('dotenv').config();
+const apiKey = process.env.API_KEY;
+const needle = require('needle');
 
 router.get('/', (req, res) => {
-  const query = `SELECT * FROM maps`;
-  console.log(query);
-  db.query(query)
-    .then(data => {
-      const maps = data.rows;
-      res.json({ maps });
+  const url = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
+  needle('GET', url)
+    .then(response => {
+      res.send(response.body)
     })
     .catch(err => {
       res
         .status(500)
         .json({ error: err.message });
     });
+
 });
 
 module.exports = router;

@@ -43,4 +43,4 @@ async function initMaps() {
   }
 }
 
-initMaps();
+module.exports = initMaps;
