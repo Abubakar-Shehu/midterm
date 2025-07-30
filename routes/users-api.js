@@ -12,12 +12,10 @@ const userQueries = require('../db/queries/users');
 router.get('/', (req, res) => {
   userQueries.getUsers()
     .then(users => {
-      res.json({ users });
+      res.render('users-api', { users }); // ⬅️ Render EJS instead of JSON
     })
     .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
+      res.status(500).send('Error loading users');
     });
 });
 

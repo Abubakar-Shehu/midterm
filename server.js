@@ -7,6 +7,7 @@ const morgan = require('morgan');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
+const mapRoutes = require('./routes/map');
 
 app.set('view engine', 'ejs');
 
@@ -42,3 +43,5 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+
+app.use('/map', mapRoutes);

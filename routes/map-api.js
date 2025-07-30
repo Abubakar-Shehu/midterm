@@ -24,4 +24,20 @@ router.get('/', (req, res) => {
     });
 });
 
+let favoriteLocations = []; // Replace with DB later
+
+router.post('/favorite', (req, res) => {
+  const { lat, lng } = req.body;
+  if (lat && lng) {
+    favoriteLocations.push({ lat, lng });
+    res.status(200).json({ message: 'Saved!' });
+  } else {
+    res.status(400).json({ error: 'Invalid data' });
+  }
+});
+
+router.get('/favorite', (req, res) => {
+  res.json({ favorites: favoriteLocations });
+});
+
 module.exports = router;

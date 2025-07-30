@@ -6,10 +6,17 @@
  */
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
+const userQueries = require('../db/queries/users');
 
 router.get('/', (req, res) => {
-  res.render('users');
-}); 
+  userQueries.getUsers()
+    .then(users => {
+      res.render('users-api', { users });
+    })
+    .catch(err => {
+      res.status(500).send('Error loading users');
+    });
+});
 
 module.exports = router;
