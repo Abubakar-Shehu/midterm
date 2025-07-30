@@ -23,6 +23,8 @@ const userApiRoutes = require('./routes/users-api');
 const mapApiRoutes = require('./routes/map-api');
 const usersRoutes = require('./routes/users');
 const createMapRoutes = require('./routes/create');
+const exploreMapRoutes = require('./routes/explore');
+
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -31,6 +33,8 @@ app.use('/api/users', userApiRoutes);
 app.use('/api/maps', mapApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/create', createMapRoutes);
+app.use('/explore', exploreMapRoutes);
+
 
 // Note: mount other resources here, using the same pattern above
 
