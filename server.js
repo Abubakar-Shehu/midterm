@@ -31,6 +31,9 @@ app.use('/api/users', userApiRoutes);
 app.use('/api/maps', mapApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/create', createMapRoutes);
+// create route for favorite map
+app.use('/api/save-favorite', require(''));
+// create the file -> log the file to the front end
 
 // Note: mount other resources here, using the same pattern above
 
