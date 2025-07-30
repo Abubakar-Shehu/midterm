@@ -14,7 +14,9 @@
   "author": "Lighthouse Labs",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^3.0.2",
     "chalk": "^4.1.2",
+    "cookie-session": "^2.1.1",
     "dotenv": "^16.6.1",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
