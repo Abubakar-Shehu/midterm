@@ -41,7 +41,7 @@ async function initMaps() {
       if (mapDiv) {
         new Map(mapDiv, {
           center: mapCoord,
-          zoom: 8
+          zoom: 12
         });
       }
     });

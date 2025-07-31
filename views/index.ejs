@@ -24,158 +24,126 @@
     <div></div>
   </div>
 
-  <!-- Navigation menu -->
-  <div id="menu" class="menu-home">
-    <div id="menu-hamburger-icon">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-    <div class="menu-inner">
-      <a class="menu-logo-clickable" href="http://localhost:8080/">
-        <div class="menu-big-site-name">MapMap</div>
-      </a>
+  <%- include('partials/header') %>
 
-      <div class="menu-right">
-        <div id="menu-profile">
-          <ul id="menu-profile-items">
-            <li><a href="http://localhost:8080/users">My Profile</a></li>
-            <li><a href="#">Log out</a></li>
-          </ul>
-          <div id="menu-profile-icon" class="menu-profile-icon"></div>
+    <!-- Main header section -->
+    <div id="home-header-background"></div>
+    <div id="home-header">
+      <div id="header-text">
+        <h1>Create interactive maps</h1>
+        <h2>Collaborate. Organize your geo-data.<br>Embed maps on your website.</h2>
+        <a class="try-button" href="http://localhost:8080/explore">Explore maps</a>
+      </div>
+    </div>
+
+    <!-- create section -->
+    <div id="promo-1">
+      <div class="promo-inner">
+        <div class="promo-text">
+          <h1>Try it out! Create a map!</h1>
+          <p>It's as easy as pie</p>
+          <a class="createnow" href="http://localhost:8080/create">CREATE MAP NOW</a>
+
         </div>
-
-        <nav id="menu-pages">
-          <ul>
-            <li><a href="#">My maps</a></li>
-            <li><a href="#">New map</a></li>
-          </ul>
-        </nav>
+        <div class="promo-img">
+          <img src="/images/2.jpg" alt="MapMap2" />
+        </div>
       </div>
     </div>
 
-    <div id="menu-cover"></div>
-  </div>
-
-  <!-- Main header section -->
-  <div id="home-header-background"></div>
-  <div id="home-header">
-    <div id="header-text">
-      <h1>Create interactive maps</h1>
-      <h2>Collaborate. Organize your geo-data.<br>Embed maps on your website.</h2>
-      <a class="try-button" href="http://localhost:8080/explore">Explore maps</a>
-    </div>
-  </div>
-
-  <!-- create section -->
-  <div id="promo-1">
-    <div class="promo-inner">
-      <div class="promo-text">
-        <h1>Try it out! Create a map!</h1>
-        <p>It's as easy as pie</p>
-        <a class="createnow" href="http://localhost:8080/create">CREATE MAP NOW</a>
-
-      </div>
-      <div class="promo-img">
-        <img src="/images/2.jpg" alt="MapMap2" />
+    <!-- explore section -->
+    <div id="explore">
+      <div class="explore-inner">
+        <div class="explore-text">
+          <h1>See some of our community made maps here</h1>
+          <p>Have a link of your own? Paste it here</p>
+          <form action="/search" method="GET" class="search-form">
+            <input type="text" name="q" placeholder="Search..." aria-label="Search" required />
+            <button type="submit">Search</button>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- explore section -->
-  <div id="explore">
-    <div class="explore-inner">
-      <div class="explore-text">
-        <h1>See some of our community made maps here</h1>
-        <p>Have a link of your own? Paste it here</p>
-        <form action="/search" method="GET" class="search-form">
-          <input type="text" name="q" placeholder="Search..." aria-label="Search" required />
-          <button type="submit">Search</button>
-        </form>
+    <!-- Maps JavaScript file -->
+    <script src="/scripts/maps2.js"></script>
+    <!-- Maps container with 4 columns -->
+    <div id="maps-container" class="maps-container">
+      <div class="map" id="map-wrapper-1">
+        <div class="map-overlay">Map 1</div>
+        <div id="map1" class="map-inner"></div>
+        <button class="favorite-btn">Favorite</button>
+      </div>
+
+      <div class="map" id="map-wrapper-2">
+        <div class="map-overlay">Map 2</div>
+        <div id="map2" class="map-inner"></div>
+        <button class="favorite-btn">Favorite</button>
+      </div>
+
+      <div class="map" id="map-wrapper-3">
+        <div class="map-overlay">Map 3</div>
+        <div id="map3" class="map-inner"></div>
+        <button class="favorite-btn">Favorite</button>
+      </div>
+
+      <div class="map" id="map-wrapper-4">
+        <div class="map-overlay">Map 4</div>
+        <div id="map4" class="map-inner"></div>
+        <button class="favorite-btn">Favorite</button>
       </div>
     </div>
-  </div>
-
-  <!-- Maps JavaScript file -->
-  <script src="/scripts/maps2.js"></script>
-  <!-- Maps container with 4 columns -->
-  <div id="maps-container" class="maps-container">
-    <div class="map" id="map-wrapper-1">
-  <div class="map-overlay">Map 1</div>
-  <div id="map1" class="map-inner"></div>
-  <button class="favorite-btn">Favorite</button>
-</div>
-
-<div class="map" id="map-wrapper-2">
-  <div class="map-overlay">Map 2</div>
-  <div id="map2" class="map-inner"></div>
-  <button class="favorite-btn">Favorite</button>
-</div>
-
-<div class="map" id="map-wrapper-3">
-  <div class="map-overlay">Map 3</div>
-  <div id="map3" class="map-inner"></div>
-  <button class="favorite-btn">Favorite</button>
-</div>
-
-<div class="map" id="map-wrapper-4">
-  <div class="map-overlay">Map 4</div>
-  <div id="map4" class="map-inner"></div>
-  <button class="favorite-btn">Favorite</button>
-</div>
-  </div>
 
 
-  <footer>
-    <ul>
-      <li><a href="#">lorem ipsum</a></li>
-      <li><a href="#">lorem ipsum</a></li>
-      <li><a href="#">lorem ipsum</a></li>
-      <li><a href="#">lorem ipsum</a></li>
-      <li><a href="http://localhost:8080/">Home Page</a></li>
-      <li>MAPMAP4eva</li>
-    </ul>
-  </footer>
+    <footer>
+      <ul>
+        <li><a href="#">lorem ipsum</a></li>
+        <li><a href="#">lorem ipsum</a></li>
+        <li><a href="#">lorem ipsum</a></li>
+        <li><a href="#">lorem ipsum</a></li>
+        <li><a href="http://localhost:8080/">Home Page</a></li>
+        <li>MAPMAP4eva</li>
+      </ul>
+    </footer>
 
 </body>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<script>
+<<<<<<< HEAD <<<<<<< HEAD <script>
   // Function to send favorite map to server
   function saveFavorite(mapNumber) {
-    fetch('/api/save-favorite', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ favoriteMap: mapNumber })
-    })
-    .then(res => res.json())
-    .then(data => {
-      console.log('Saved favorite:', data);
-      alert(`Map ${mapNumber} saved as your favorite!`);
-    })
-    .catch(err => {
-      console.error('Error saving favorite map:', err);
-    });
+  fetch('/api/save-favorite', {
+  method: 'POST',
+  headers: {
+  'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ favoriteMap: mapNumber })
+  })
+  .then(res => res.json())
+  .then(data => {
+  console.log('Saved favorite:', data);
+  alert(`Map ${mapNumber} saved as your favorite!`);
+  })
+  .catch(err => {
+  console.error('Error saving favorite map:', err);
+  });
   }
 
   // Add event listeners to all favorite buttons
   document.addEventListener('DOMContentLoaded', () => {
-    const favoriteButtons = document.querySelectorAll('.favorite-btn');
+  const favoriteButtons = document.querySelectorAll('.favorite-btn');
 
-    favoriteButtons.forEach((button, index) => {
-      button.addEventListener('click', () => {
-        const mapNumber = index + 1;
-        saveFavorite(mapNumber);
-      });
-    });
+  favoriteButtons.forEach((button, index) => {
+  button.addEventListener('click', () => {
+  const mapNumber = index + 1;
+  saveFavorite(mapNumber);
   });
-</script>
-=======
+  });
+  });
+  </script>
+  =======
 
->>>>>>> 847949fa721cc6db69df41deeb17fc156fe4879c
-=======
+  >>>>>>> 847949fa721cc6db69df41deeb17fc156fe4879c
+  =======
 
->>>>>>> bach-fixed-favourite
+  >>>>>>> bach-fixed-favourite
+
 </html>

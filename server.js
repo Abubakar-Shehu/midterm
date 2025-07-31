@@ -5,6 +5,8 @@ require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
 const morgan = require('morgan');
+const cookieSession = require('cookie-session');
+const getAllUsers = require('./db/queries/users');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -34,6 +36,11 @@ app.use((req, res, next) => {
   }
   next();
 });
+app.use(cookieSession({
+  name: 'bam',
+  keys: ["bach-abu-makenzie"],
+  maxAge: 300 * 1000
+}))
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
@@ -42,6 +49,7 @@ const mapApiRoutes = require('./routes/map-api');
 const usersRoutes = require('./routes/users');
 const createMapRoutes = require('./routes/create');
 const saveFavoriteRouter = require('./routes/save-favorite');
+const logoutRoutes = require('./routes/logout')
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -51,6 +59,7 @@ app.use('/api/maps', mapApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/create', createMapRoutes);
 app.use('/api/save-favorite', saveFavoriteRouter);
+app.use('/logout', logoutRoutes);
 
 // Note: mount other resources here, using the same pattern above
 
@@ -58,7 +67,16 @@ app.use('/api/save-favorite', saveFavoriteRouter);
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get('/', (req, res) => {
-  res.render('index');
+  getAllUsers.getUsers()
+    .then(users => {
+      // Find the logged-in user by session
+      const user = users.find(u => u.id == req.session.user);
+      const templateVars = { users, user };
+      res.render('index', templateVars);
+    })
+    .catch(err => {
+      res.status(500).send('Error loading users');
+    });
 });
 
 app.listen(PORT, () => {
