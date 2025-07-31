@@ -42,5 +42,30 @@ async function initMaps() {
     }
   }
 }
+function saveFavorite(mapNumber) {
+  fetch('/api/save-favorite', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ favoriteMap: mapNumber })
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log('Saved favorite:', data);
+      alert(`Map ${mapNumber} saved as your favorite!`);
+    })
+    .catch(err => {
+      console.error('Error saving favorite map:', err);
+    });
+}
+document.addEventListener('DOMContentLoaded', () => {
+  for (let i = 1; i <= 4; i++) {
+    const btn = document.querySelector(`#map-wrapper-${i} .favorite-btn`);
+    if (btn) {
+      btn.addEventListener('click', () => saveFavorite(i));
+    }
+  }
+});
 
 initMaps();
