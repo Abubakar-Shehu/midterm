@@ -69,21 +69,28 @@
     <script src="/scripts/maps2.js"></script>
     <!-- Maps container with 4 columns -->
     <div id="maps-container" class="maps-container">
-      <div class="map">
+      <div class="map" id="map-wrapper-1">
         <div class="map-overlay">Map 1</div>
-        <div id="mapTOR" class="map-inner"></div>
+        <div id="map1" class="map-inner"></div>
+        <button class="favorite-btn">Favorite</button>
       </div>
-      <div class="map">
+
+      <div class="map" id="map-wrapper-2">
         <div class="map-overlay">Map 2</div>
-        <div id="mapNY" class="map-inner"></div>
+        <div id="map2" class="map-inner"></div>
+        <button class="favorite-btn">Favorite</button>
       </div>
-      <div class="map">
+
+      <div class="map" id="map-wrapper-3">
         <div class="map-overlay">Map 3</div>
-        <div id="mapLondon" class="map-inner"></div>
+        <div id="map3" class="map-inner"></div>
+        <button class="favorite-btn">Favorite</button>
       </div>
-      <div class="map">
+
+      <div class="map" id="map-wrapper-4">
         <div class="map-overlay">Map 4</div>
-        <div id="mapTokyo" class="map-inner"></div>
+        <div id="map4" class="map-inner"></div>
+        <button class="favorite-btn">Favorite</button>
       </div>
     </div>
 
@@ -100,5 +107,43 @@
     </footer>
 
 </body>
+<<<<<<< HEAD <<<<<<< HEAD <script>
+  // Function to send favorite map to server
+  function saveFavorite(mapNumber) {
+  fetch('/api/save-favorite', {
+  method: 'POST',
+  headers: {
+  'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ favoriteMap: mapNumber })
+  })
+  .then(res => res.json())
+  .then(data => {
+  console.log('Saved favorite:', data);
+  alert(`Map ${mapNumber} saved as your favorite!`);
+  })
+  .catch(err => {
+  console.error('Error saving favorite map:', err);
+  });
+  }
+
+  // Add event listeners to all favorite buttons
+  document.addEventListener('DOMContentLoaded', () => {
+  const favoriteButtons = document.querySelectorAll('.favorite-btn');
+
+  favoriteButtons.forEach((button, index) => {
+  button.addEventListener('click', () => {
+  const mapNumber = index + 1;
+  saveFavorite(mapNumber);
+  });
+  });
+  });
+  </script>
+  =======
+
+  >>>>>>> 847949fa721cc6db69df41deeb17fc156fe4879c
+  =======
+
+  >>>>>>> bach-fixed-favourite
 
 </html>
