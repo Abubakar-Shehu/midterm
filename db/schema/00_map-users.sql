@@ -99,7 +99,9 @@ CREATE TABLE points (
   id SERIAL PRIMARY KEY,
   title VARCHAR(255) NOT NULL,
   description TEXT NOT NULL,
-  image VARCHAR(255) NOT NULL
+  image VARCHAR(255) NOT NULL,
+  longitude NUMERIC(9, 6) NOT NULL,
+  latitude NUMERIC(9, 6) NOT NULL
 );
 
 -- Maps

@@ -6,71 +6,30 @@
   <meta name="google" content="notranslate" />
   <title>MapMap login</title>
   <meta name="description" content="MapMap lets you do fun stuff with maps." />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
 
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" />
 
   <script defer data-domain="localhost" src="http://localhost:8080/"></script>
+  <script>window.apiKey = "<%= apiKey %>"</script>
 </head>
 
 <body>
-  <!-- Navigation menu -->
-  <div id="menu" class="menu-home">
-    <div id="menu-hamburger-icon">
-      <div></div><div></div><div></div>
-    </div>
-    <div class="menu-inner">
-  <a class="menu-logo-clickable" href="http://localhost:8080/">
-    <div class="menu-big-site-name">MapMap</div>
-  </a>
+  <%- include('partials/header') %>
 
-  <div class="menu-right">
-    <div id="menu-profile">
-      <ul id="menu-profile-items">
-        <li><a href="http://localhost:8080/users">My Profile</a></li>
-        <li><a href="#">Log out</a></li>
-      </ul>
-      <div id="menu-profile-icon" class="menu-profile-icon"></div>
-    </div>
-
-    <nav id="menu-pages">
-      <ul>
-        <li><a href="#">My maps</a></li>
-        <li><a href="#">New map</a></li>
-      </ul>
-    </nav>
-  </div>
-</div>
-
-    <div id="menu-cover"></div>
-  </div>
-  <div class="login">
-  <h1>Log in here</h1>
-  <div class="messages"></div>
-  <form method="post" action="/login" class="center">
-    <input type="hidden" name="csrf_token" value="4f711e94a5167c8e57451616ab5196037a5b91e8358594c7e378a0f9a68ca5d0">
-
-    <div>
-      <label for="login">Username or email</label><br>
-      <input autocapitalize="off" autocorrect="off" autofocus id="login" name="login" tabindex="1" type="text" value="">
-    </div>
-
-    <div>
-      <label for="password">Password</label><br>
-      <input id="password" name="password" tabindex="2" type="password" value="">
-    </div>
-
-    <input type="hidden" name="next" value="/">
-    <input type="submit" tabindex="3" value="Log in">
-  </form>
-
-  <div class="register-notice">
-    You don't have an account yet?
-    <a href="http://localhost:8080/">Sign up here</a>.
-  </div>
-</div>
-
+    <h2>Login</h2>
+    <form method="POST" action="/users">
+      <select name="user_id">
+        <% users.forEach(user=> { %>
+          <option value="<%= user.id %>">
+            <%= user.name %> (<%= user.email %>)
+          </option>
+          <% }) %>
+      </select>
+      <button type="submit">Login</button>
+    </form>
 </body>
 
 </html>

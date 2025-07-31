@@ -16,7 +16,7 @@
     }));
   d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n));
 })({
-  key: "AIzaSyDZP_5baVuXLOyz89W70mja_NN_L7RhwaU", // your API key
+  key: window.apiKey, // your API key
   v: "weekly"
 });
 

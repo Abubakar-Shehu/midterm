@@ -17,29 +17,44 @@
   <!-- <script defer data-domain="localhost" src="http://localhost:8080/"></script> -->
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
-  <script defer src="/scripts/create_map.js"></script>
+  <script defer src="/scripts/get_map.js"></script>
+  <script>window.apiKey = "<%= apiKey %>"</script>
 </head>
 
 <body>
+  <%- include('partials/header') %>
 
-  <h1>Choose Your Options</h1>
-  <div class="options">
-    <div class="toronto">
-      <div id="map1"></div>
-      <p>Toronto</p>
+    <h1>Choose Your City</h1>
+    <div class="options">
+      <div class="city-option" data-city="Toronto" data-lat="43.6532" data-lng="-79.3832">
+        <div class="map-preview" id="map1"></div>
+        <a href="/create/1">
+          <p>Toronto</p>
+        </a>
+      </div>
+      <div class="city-option" data-city="New York" data-lat="40.7128" data-lng="-74.0060">
+        <div class="map-preview" id="map2"></div>
+        <a href="/create/2">
+          <p>New York</p>
+        </a>
+      </div>
+      <div class="city-option" data-city="London" data-lat="51.5074" data-lng="-0.1278">
+        <div class="map-preview" id="map3"></div>
+        <a href="/create/3">
+          <p>London</p>
+        </a>
+      </div>
     </div>
-    <div class="new-york">
-      <div id="map2"></div>
-      <p>New York</p>
-    </div>
-    <div class="london">
-      <div id="map3"></div>
-      <p>London</p>
-    </div>
-  </div>
 
-  <button type="submit">Submit</button>
-
+    <div id="expanded-map-container" style="display:none;">
+      <h2 id="selected-city"></h2>
+      <div id="expanded-map" style="width: 600px; height: 400px;"></div>
+      <form id="marker-form" method="POST" action="/create">
+        <input type="hidden" name="city" id="city-input" />
+        <input type="hidden" name="markers" id="markers-input" />
+        <button type="submit">Save Markers</button>
+      </form>
+    </div>
 </body>
 
 </html>

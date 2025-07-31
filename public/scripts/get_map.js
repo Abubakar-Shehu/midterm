@@ -18,7 +18,7 @@
     ? console.warn(p + " only loads once. Ignoring:", g)
     : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n));
 })({
-  key: "AIzaSyDZP_5baVuXLOyz89W70mja_NN_L7RhwaU", // your API key
+  key: window.apiKey, // your API key
   v: "weekly",
 });
 
@@ -33,15 +33,15 @@ async function initMaps() {
       const { longitude, latitude, id } = location;
 
       const mapCoord = {
-        lat: parseFloat(longitude),
-        lng: parseFloat(latitude)
+        lat: parseFloat(latitude),
+        lng: parseFloat(longitude)
       };
-      console.log(mapCoord)
+
       const mapDiv = document.getElementById(`map${id}`); // Assuming map divs have IDs like map1, map2, etc.
       if (mapDiv) {
         new Map(mapDiv, {
           center: mapCoord,
-          zoom: 8
+          zoom: 12
         });
       }
     });

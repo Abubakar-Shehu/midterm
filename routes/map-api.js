@@ -23,24 +23,4 @@ router.get('/', (req, res) => {
     });
 });
 
-
-// app.set('view engine', 'ejs');
-// app.use(express.static('public'));
-
-// router.get('/', (req, res) => {
-//   mapsQuery.getMaps()
-//     .then(data => {
-//       const templateVars = { data }
-//       res.render('create', templateVars);
-//     })
-//     .catch(err => {
-//       res
-//         .status(500)
-//         .json({ error: err.message });
-//     });
-// });
-
-// module.exports = router;
-
-
 module.exports = router;

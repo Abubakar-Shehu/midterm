@@ -9,10 +9,14 @@
 
   <%- include('./partials/header') %>
 
-  <link rel="stylesheet" href="/styles/layout.css" />
-  <link rel="stylesheet" href="/styles/explore.css" />
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZP_5baVuXLOyz89W70mja_NN_L7RhwaU&callback=initMap"></script>
+    <link rel="stylesheet" href="/styles/layout.css" />
+    <link rel="stylesheet" href="/styles/explore.css" />
+
+    <script src="/vendor/jquery-3.0.0.js"></script>
+    <script defer src="/scripts/app.js"></script>
+    <script defer src="/scripts/create_map.js"></script>
+    <script defer src="/scripts/maps3.js"></script>
+    <script>window.apiKey = "<%= apiKey %>"</script>
 </head>
 
 <body>
@@ -195,4 +199,5 @@
     }
   </script>
 </body>
+
 </html>
