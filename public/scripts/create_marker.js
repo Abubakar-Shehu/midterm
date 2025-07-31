@@ -18,38 +18,41 @@
     ? console.warn(p + " only loads once. Ignoring:", g)
     : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n));
 })({
-  key: "AIzaSyDZP_5baVuXLOyz89W70mja_NN_L7RhwaU", // your API key
+  key: window.apiKey, // your API key
   v: "weekly",
 });
 
-async function initMaps() {
-  try {
-    const { Map } = await google.maps.importLibrary("maps");
+async function initMap() {
+  const { Map } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
-    const response = await fetch('/api/maps');
-    const { maps } = await response.json();
+  const response = await fetch('/api/maps');
+  const { maps } = await response.json();
 
-    maps.forEach((location) => {
-      const { longitude, latitude, id } = location;
+  const mapCoord = {};
+  maps.forEach((location) => {
+  const { longitude, latitude, id } = location;
+    mapCoord[id] = {
+      lat: parseFloat(latitude),
+      lng: parseFloat(longitude)
+    };
+  })
 
-      const mapCoord = {
-        lat: parseFloat(longitude),
-        lng: parseFloat(latitude)
-      };
-      console.log(mapCoord)
-      const mapDiv = document.getElementById(`map${id}`); // Assuming map divs have IDs like map1, map2, etc.
-      if (mapDiv) {
-        new Map(mapDiv, {
-          center: mapCoord,
-          zoom: 12
-        });
-      }
+  const center = mapCoord[window.mapId];
+
+  const mapDiv = document.getElementById('map');
+
+  const map = new Map(mapDiv, {
+    center: center,
+    zoom: 14
+  });
+
+  map.addListener('click', function(event) {
+    new AdvancedMarkerElement({
+      position: event.latLng,
+      map: map
     });
-
-  } catch (error) {
-    console.error('Error fetching map data:', error);
-  }
+  })
 }
 
-
-initMaps();
+initMap();

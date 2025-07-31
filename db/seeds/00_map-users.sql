@@ -47,7 +47,7 @@ INSERT INTO points (title, description, image) VALUES
   ('City Plaza', 'Main plaza filled with local art and performers.', 'plaza.jpg');
 
 -- Insert maps
-INSERT INTO maps (user_id, name, longitude, latitude) VALUES
+INSERT INTO maps (user_id, name, latitude, longitude) VALUES
   (1, 'Toronto', 43.6532, -79.3832),
   (2, 'New York', 40.7128, -74.0060),
   (3, 'London', 51.5074, -0.1278);

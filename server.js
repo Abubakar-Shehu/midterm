@@ -3,10 +3,12 @@ require('dotenv').config();
 
 // Web server config
 const express = require('express');
-const session = require('express-session');
+// const session = require('express-session');
 const morgan = require('morgan');
 const cookieSession = require('cookie-session');
 const getAllUsers = require('./db/queries/users');
+
+const apiKey =  process.env.API_KEY;
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -21,25 +23,27 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(express.json());
 
-// setting up session for favorite maps
-app.use(session({
-  secret: 'yourSecretHere',
-  resave: false,
-  saveUninitialized: false,
-  cookie: { secure: false, maxAge: 6000 } // secure: true for HTTPS, false for HTTP
-}));
+// // setting up session for favorite maps
+// app.use(session({
+//   secret: 'yourSecretHere',
+//   resave: false,
+//   saveUninitialized: false,
+//   cookie: { secure: false, maxAge: 6000 } // secure: true for HTTPS, false for HTTP
+// }));
 
 // Simulate testing like real user
-app.use((req, res, next) => {
-  if (!req.session.userId) {
-    req.session.userId = 'someUserId123'; // replace with real user ID after login
-  }
-  next();
-});
+// app.use((req, res, next) => {
+//   if (!req.session.userId) {
+//     req.session.userId = 'someUserId123'; // replace with real user ID after login
+//   }
+//   next();
+// });
+const cookieKeys = process.env.COOKIE_KEY.split(',')
+
 app.use(cookieSession({
-  name: 'bam',
-  keys: ["bach-abu-makenzie"],
-  maxAge: 300 * 1000
+  name: process.env.COOKIE_NAME,
+  keys: cookieKeys,
+  maxAge: Number(process.env.COOKIE_AGE)
 }))
 
 // Separated Routes for each Resource
@@ -48,6 +52,7 @@ const userApiRoutes = require('./routes/users-api');
 const mapApiRoutes = require('./routes/map-api');
 const usersRoutes = require('./routes/users');
 const createMapRoutes = require('./routes/create');
+const exploreMapRoutes = require('./routes/explore');
 const saveFavoriteRouter = require('./routes/save-favorite');
 const logoutRoutes = require('./routes/logout')
 
@@ -58,6 +63,7 @@ app.use('/api/users', userApiRoutes);
 app.use('/api/maps', mapApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/create', createMapRoutes);
+app.use('/explore', exploreMapRoutes);
 app.use('/api/save-favorite', saveFavoriteRouter);
 app.use('/logout', logoutRoutes);
 
@@ -71,7 +77,7 @@ app.get('/', (req, res) => {
     .then(users => {
       // Find the logged-in user by session
       const user = users.find(u => u.id == req.session.user);
-      const templateVars = { users, user };
+      const templateVars = { users, user, apiKey };
       res.render('index', templateVars);
     })
     .catch(err => {

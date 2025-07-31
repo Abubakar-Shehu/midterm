@@ -15,6 +15,8 @@
 
   <!-- Optional Analytics or Scripts -->
   <script defer data-domain="localhost" src="http://localhost:8080/"></script>
+  <script defer src="../public/scripts/maps2.js"></script>
+  <script>window.apiKey = "<%= apiKey %>"</script>
 </head>
 
 <body>
@@ -107,43 +109,6 @@
     </footer>
 
 </body>
-<<<<<<< HEAD <<<<<<< HEAD <script>
-  // Function to send favorite map to server
-  function saveFavorite(mapNumber) {
-  fetch('/api/save-favorite', {
-  method: 'POST',
-  headers: {
-  'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({ favoriteMap: mapNumber })
-  })
-  .then(res => res.json())
-  .then(data => {
-  console.log('Saved favorite:', data);
-  alert(`Map ${mapNumber} saved as your favorite!`);
-  })
-  .catch(err => {
-  console.error('Error saving favorite map:', err);
-  });
-  }
 
-  // Add event listeners to all favorite buttons
-  document.addEventListener('DOMContentLoaded', () => {
-  const favoriteButtons = document.querySelectorAll('.favorite-btn');
-
-  favoriteButtons.forEach((button, index) => {
-  button.addEventListener('click', () => {
-  const mapNumber = index + 1;
-  saveFavorite(mapNumber);
-  });
-  });
-  });
-  </script>
-  =======
-
-  >>>>>>> 847949fa721cc6db69df41deeb17fc156fe4879c
-  =======
-
-  >>>>>>> bach-fixed-favourite
 
 </html>
