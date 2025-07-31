@@ -16,7 +16,7 @@
     }));
   d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n));
 })({
-  key: "AIzaSyDZP_5baVuXLOyz89W70mja_NN_L7RhwaU", // your API key
+  key: window.apiKey, // your API key
   v: "weekly"
 });
 
@@ -25,10 +25,10 @@ async function initMaps() {
 
   const allCoords = {
     // Home page specific
-    mapTOR: { lat: 43.6532, lng: -79.3832 },  // Toronto
-    mapNY: { lat: 40.7128, lng: -74.0060 },  // New York
-    mapLondon: { lat: 51.5074, lng: -0.1278 },  // London
-    mapTokyo: { lat: 35.6895, lng: 139.6917 }  // Tokyo
+    map1: { lat: 43.6532, lng: -79.3832 },  // Toronto
+    map2: { lat: 40.7128, lng: -74.0060 },  // New York
+    map3: { lat: 51.5074, lng: -0.1278 },  // London
+    map4: { lat: 35.6895, lng: 139.6917 }  // Tokyo
   };
 
   for (const id in allCoords) {
@@ -41,6 +41,7 @@ async function initMaps() {
     }
   }
 }
+
 function saveFavorite(mapNumber) {
   fetch('/api/save-favorite', {
     method: 'POST',
@@ -66,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+
 
 initMaps();
 
