@@ -20,15 +20,31 @@
   v: "weekly"
 });
 
+
+
 async function initMaps() {
   const { Map } = await google.maps.importLibrary("maps");
 
   const allCoords = {
     // Home page specific
-    mapTOR: { lat: 43.6532, lng: -79.3832 },  // Toronto
-    mapNY: { lat: 40.7128, lng: -74.0060 },  // New York
-    mapLondon: { lat: 51.5074, lng: -0.1278 },  // London
-    mapTokyo: { lat: 35.6895, lng: 139.6917 }  // Tokyo
+    mapLA: { lat: 34.0522, lng: -118.2437 }, // Los Angeles
+    mapVan: { lat: 49.2827, lng: -123.1207 }, // Vancouver
+    mapChicago: { lat: 41.8781, lng: -87.6298 }, // Chicago
+    mapBuenosAires: { lat: -34.6037, lng: -58.3816 },
+    mapSãoPaulo: { lat: -23.5505, lng: -46.6333 },
+    mapLima: { lat: -12.0464, lng: -77.0428 },
+    mapLondon: { lat: 51.5074, lng: -0.1278 },
+    mapParis: { lat: 48.8566, lng: 2.3522 },
+    mapBerlin: { lat: 52.5200, lng: 13.4050 },
+    mapBeijing: { lat: 39.9042, lng: 116.4074 },     // Beijing, China
+    mapSeoul: { lat: 37.5665, lng: 126.9780 },       // Seoul, South Korea
+    mapBangkok: { lat: 13.7563, lng: 100.5018 },      // Bangkok, Thailand
+    mapCairo: { lat: 30.0444, lng: 31.2357 },        // Cairo, Egypt
+    mapNairobi: { lat: -1.2921, lng: 36.8219 },      // Nairobi, Kenya
+    mapCapeTown: { lat: -33.9249, lng: 18.4241 },   // Cape Town, South Africa
+    mapSydney: { lat: -33.8688, lng: 151.2093 },     // Sydney, Australia
+    mapAuckland: { lat: -36.8485, lng: 174.7633 },   // Auckland, New Zealand
+    mapSuva: { lat: -18.1248, lng: 178.4501 },        // Suva, Fiji
   };
 
   for (const id in allCoords) {
@@ -41,32 +57,6 @@ async function initMaps() {
     }
   }
 }
-function saveFavorite(mapNumber) {
-  fetch('/api/save-favorite', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ favoriteMap: mapNumber })
-  })
-    .then(res => res.json())
-    .then(data => {
-      console.log('Saved favorite:', data);
-      alert(`Map ${mapNumber} saved as your favorite!`);
-    })
-    .catch(err => {
-      console.error('Error saving favorite map:', err);
-    });
-}
-document.addEventListener('DOMContentLoaded', () => {
-  for (let i = 1; i <= 4; i++) {
-    const btn = document.querySelector(`#map-wrapper-${i} .favorite-btn`);
-    if (btn) {
-      btn.addEventListener('click', () => saveFavorite(i));
-    }
-  }
-});
 
 initMaps();
-
 
