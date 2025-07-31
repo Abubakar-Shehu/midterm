@@ -10,12 +10,13 @@
 
   <%- include('./partials/header') %>
 
-  <link rel="stylesheet" href="/styles/layout.css" />
-  <link rel="stylesheet" href="/styles/explore.css" />
-  <script src="/vendor/jquery-3.0.0.js"></script>
-  <script defer src="/scripts/app.js"></script>
-  <script defer src="/scripts/create_map.js"></script>
-  <script defer src="/scripts/maps3.js"></script>
+    <link rel="stylesheet" href="/styles/layout.css" />
+    <link rel="stylesheet" href="/styles/explore.css" />
+
+    <script src="/vendor/jquery-3.0.0.js"></script>
+    <script defer src="/scripts/app.js"></script>
+    <script defer src="/scripts/create_map.js"></script>
+    <script defer src="/scripts/maps3.js"></script>
 </head>
 
 <body>
@@ -28,100 +29,101 @@
     <button type="submit">Go</button>
   </form>
 
- <div class="city-groups">
-  <div class="continents">
-    <h2>North America</h2>
-    <div class="map-card">
-      <div id="mapLA" class="map-box"></div>
-      <p>Los Angeles</p>
-    </div>
-    <div class="map-card">
-      <div id="mapVan" class="map-box"></div>
-      <p>Vancouver</p>
-    </div>
-    <div class="map-card">
-      <div id="mapChicago" class="map-box"></div>
-      <p>Chicago</p>
-    </div>
-    <h2>South America</h2>
-    <div class="map-card">
-      <div id="mapBuenosAires" class="map-box"></div>
-      <p>Buenos Aires</p>
-    </div>
-    <div class="map-card">
-      <div id="mapSãoPaulo" class="map-box"></div>
-      <p>São Paulo</p>
-    </div>
-    <div class="map-card">
-      <div id="mapLima" class="map-box"></div>
-      <p>Lima</p>
-    </div>
-    <h2>Eruope</h2>
+  <div class="city-groups">
+    <div class="continents">
+      <h2>North America</h2>
       <div class="map-card">
-      <div id="mapLondon" class="map-box"></div>
-      <p>London</p>
-    </div>
-    <div class="map-card">
-      <div id="mapParis" class="map-box"></div>
-      <p>Paris</p>
-    </div>
-    <div class="map-card">
-      <div id="mapBerlin" class="map-box"></div>
-      <p>Berlin</p>
-    </div>
-        <h2>Asia</h2>
+        <div id="mapLA" class="map-box"></div>
+        <p>Los Angeles</p>
+      </div>
       <div class="map-card">
-      <div id="mapBeijing" class="map-box"></div>
-      <p>Beijing</p>
-    </div>
-    <div class="map-card">
-      <div id="mapSeoul" class="map-box"></div>
-      <p>Seoul</p>
-    </div>
-    <div class="map-card">
-      <div id="mapBangkok" class="map-box"></div>
-      <p>Bangkok</p>
-  </div>
-    <h2>Africa</h2>
+        <div id="mapVan" class="map-box"></div>
+        <p>Vancouver</p>
+      </div>
       <div class="map-card">
-      <div id="mapCairo" class="map-box"></div>
-      <p>Cairo</p>
-    </div>
-    <div class="map-card">
-      <div id="mapNairobi" class="map-box"></div>
-      <p>Nairobi</p>
-    </div>
-    <div class="map-card">
-      <div id="mapCapeTown" class="map-box"></div>
-      <p>Cape Town</p>
-  </div>
+        <div id="mapChicago" class="map-box"></div>
+        <p>Chicago</p>
+      </div>
+      <h2>South America</h2>
+      <div class="map-card">
+        <div id="mapBuenosAires" class="map-box"></div>
+        <p>Buenos Aires</p>
+      </div>
+      <div class="map-card">
+        <div id="mapSãoPaulo" class="map-box"></div>
+        <p>São Paulo</p>
+      </div>
+      <div class="map-card">
+        <div id="mapLima" class="map-box"></div>
+        <p>Lima</p>
+      </div>
+      <h2>Eruope</h2>
+      <div class="map-card">
+        <div id="mapLondon" class="map-box"></div>
+        <p>London</p>
+      </div>
+      <div class="map-card">
+        <div id="mapParis" class="map-box"></div>
+        <p>Paris</p>
+      </div>
+      <div class="map-card">
+        <div id="mapBerlin" class="map-box"></div>
+        <p>Berlin</p>
+      </div>
+      <h2>Asia</h2>
+      <div class="map-card">
+        <div id="mapBeijing" class="map-box"></div>
+        <p>Beijing</p>
+      </div>
+      <div class="map-card">
+        <div id="mapSeoul" class="map-box"></div>
+        <p>Seoul</p>
+      </div>
+      <div class="map-card">
+        <div id="mapBangkok" class="map-box"></div>
+        <p>Bangkok</p>
+      </div>
+      <h2>Africa</h2>
+      <div class="map-card">
+        <div id="mapCairo" class="map-box"></div>
+        <p>Cairo</p>
+      </div>
+      <div class="map-card">
+        <div id="mapNairobi" class="map-box"></div>
+        <p>Nairobi</p>
+      </div>
+      <div class="map-card">
+        <div id="mapCapeTown" class="map-box"></div>
+        <p>Cape Town</p>
+      </div>
       <h2>Oceania</h2>
       <div class="map-card">
-      <div id="mapSydney" class="map-box"></div>
-      <p>Sydney</p>
-    </div>
-    <div class="map-card">
-      <div id="mapAuckland" class="map-box"></div>
-      <p>Auckland</p>
-    </div>
-    <div class="map-card">
-      <div id="mapSuva" class="map-box"></div>
-      <p>Suva</p>
+        <div id="mapSydney" class="map-box"></div>
+        <p>Sydney</p>
+      </div>
+      <div class="map-card">
+        <div id="mapAuckland" class="map-box"></div>
+        <p>Auckland</p>
+      </div>
+      <div class="map-card">
+        <div id="mapSuva" class="map-box"></div>
+        <p>Suva</p>
 
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const form = document.getElementById('city-search-form');
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        const city = document.getElementById('city-input').value.trim();
-        if (city) {
-          const query = encodeURIComponent(city);
-          window.open(`https://www.google.com/maps/search/?api=1&query=${query}`, '_blank');
-        }
-      });
-    });
-  </script>
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('city-search-form');
+            form.addEventListener('submit', function (e) {
+              e.preventDefault();
+              const city = document.getElementById('city-input').value.trim();
+              if (city) {
+                const query = encodeURIComponent(city);
+                window.open(`https://www.google.com/maps/search/?api=1&query=${query}`, '_blank');
+              }
+            });
+          });
+        </script>
 
 </body>
+
 </html>
