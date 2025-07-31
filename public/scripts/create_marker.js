@@ -42,17 +42,65 @@ async function initMap() {
 
   const mapDiv = document.getElementById('map');
 
-  const map = new Map(mapDiv, {
+  const contentMap = new Map(mapDiv, {
     center: center,
-    zoom: 14
+    zoom: 14,
+    mapId: "DEMO_MAP_ID"
   });
 
-  map.addListener('click', function(event) {
-    new AdvancedMarkerElement({
+  contentMap.addListener('click', function(event) {
+    const marker = new google.maps.Marker({
       position: event.latLng,
-      map: map
+      map: contentMap
     });
-  })
+
+    // Create an InfoWindow with a form
+    const infoWindow = new google.maps.InfoWindow({
+      content: `
+        <div>
+          <label for="marker-info">Marker Info:</label>
+          <input id="marker-title" type="text" placeholder="Title" />
+          <input id="marker-description" type="text" placeholder="Description" />
+          <input id="marker-image" type="text" placeholder="Image Link" />
+          <button id="save-marker-info">Save</button>
+        </div>
+      `
+    });
+
+    infoWindow.open(contentMap, marker);
+
+    google.maps.event.addListenerOnce(infoWindow, 'domready', function() {
+      document.getElementById('save-marker-info').onclick = function() {
+        const description = document.getElementById('marker-description').value;
+        const title = document.getElementById('marker-title').value;
+        const image = document.getElementById('marker-image').value;
+        const latitude = marker.getPosition().lat();
+        const longitude = marker.getPosition().lng();
+
+        fetch('/api/markers', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            mapId: window.mapId,
+            latitude,
+            longitude,
+            description,
+            title,
+            image
+          })
+        })
+        .then(res => res.json())
+        .then(data => {
+          infoWindow.setContent(`<div><strong>Info:</strong> ${description}</div>`);
+
+        })
+        .catch(err => {
+          infoWindow.setContent('<div style="color:red;">Error saving marker!</div>');
+        });
+
+      };
+    });
+  });
 }
 
 initMap();

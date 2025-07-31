@@ -55,6 +55,7 @@ const createMapRoutes = require('./routes/create');
 const exploreMapRoutes = require('./routes/explore');
 const saveFavoriteRouter = require('./routes/save-favorite');
 const logoutRoutes = require('./routes/logout')
+const markerRoutes = require('./routes/markers-api')
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -66,6 +67,7 @@ app.use('/create', createMapRoutes);
 app.use('/explore', exploreMapRoutes);
 app.use('/api/save-favorite', saveFavoriteRouter);
 app.use('/logout', logoutRoutes);
+app.use('/api/markers', markerRoutes);
 
 // Note: mount other resources here, using the same pattern above
 
