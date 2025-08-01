@@ -22,6 +22,8 @@
   v: "weekly",
 });
 
+let markersData = [];
+
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
 
@@ -76,26 +78,17 @@ async function initMap() {
         const latitude = marker.getPosition().lat();
         const longitude = marker.getPosition().lng();
 
-        fetch('/api/markers', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            mapId: window.mapId,
-            latitude,
-            longitude,
-            description,
-            title,
-            image
-          })
-        })
-        .then(res => res.json())
-        .then(data => {
-          infoWindow.setContent(`<strong>${title}</strong><br><em>${description}</em><br>`);
+        const markerData = {
+          title,
+          description,
+          image,
+          latitude,
+          longitude
+        };
 
-        })
-        .catch(err => {
-          infoWindow.setContent('<div style="color:red;">Error saving marker!</div>');
-        });
+        markersData.push(markerData);
+
+        infoWindow.setContent(`<strong>${title}</strong><br><em>${description}</em><br>`);
 
         marker.addListener('click', function() {
           infoWindow.open(contentMap, marker);
@@ -105,7 +98,43 @@ async function initMap() {
     });
   });
 
+  async function saveMapWithMarkers() {
+    if (markersData.length === 0) {
+      alert('Add at least one marker before saving.');
+      return;
+    }
+    try {
+      const response = await fetch('/api/maps/with-markers', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          mapId: window.mapId,
+          markers: markersData,
+          userId: window.userId
+        })
+      });
 
+      const data = await response.json();
+      if (data.success) {
+        alert('Map and markers saved!');
+        window.location.href = "/";
+      } else {
+        alert('Error saving map.');
+      }
+    } catch (err) {
+      alert('Error saving map.');
+      console.error(err);
+    }
+  }
+
+  const saveBtn = document.getElementById('save-map-btn');
+  if (saveBtn) {
+    saveBtn.addEventListener('click', saveMapWithMarkers);
+  }
 }
 
 initMap();
+
+
+
+

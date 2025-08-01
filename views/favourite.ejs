@@ -27,44 +27,44 @@
 
   <%- include('partials/header') %>
 
-  <main class="content-container">
-    <h2>Your Favourited Maps</h2>
-    <div id="maps-container" class="maps-container"></div>
-    <p id="no-favorites-msg" style="display: none;">You haven't favourited any maps yet.</p>
-  </main>
+    <main class="content-container">
+      <h2>Your Favourited Maps</h2>
+      <div id="maps-container" class="maps-container"></div>
+      <p id="no-favorites-msg" style="display: none;">You haven't favourited any maps yet.</p>
+    </main>
 
-  <script src="/scripts/maps2.js"></script>
-  <script src="/scripts/favourite_map.js"></script>
-  <script>
-    function loadGoogleMapsScript(callback) {
-      const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${window.apiKey}&callback=${callback}`;
-      script.async = true;
-      script.defer = true;
-      document.head.appendChild(script);
-    }
+    <script src="/scripts/maps2.js"></script>
+    <script src="/scripts/favourite_map.js"></script>
+    <script>
+      function loadGoogleMapsScript(callback) {
+        const script = document.createElement('script');
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${window.apiKey}&callback=${callback}`;
+        script.async = true;
+        script.defer = true;
+        document.head.appendChild(script);
+      }
 
-    function initGoogleMaps() {
-      fetchFavorites();
-    }
+      function initGoogleMaps() {
+        fetchFavorites();
+      }
 
-    async function fetchFavorites() {
-      try {
-        const res = await fetch('/api/user/favorites');
-        if (!res.ok) throw new Error('Failed to fetch favorites');
-        const maps = await res.json();
+      async function fetchFavorites() {
+        try {
+          const res = await fetch('/api/user/favorites');
+          if (!res.ok) throw new Error('Failed to fetch favorites');
+          const maps = await res.json();
 
-        const container = document.getElementById('maps-container');
-        const noFavMsg = document.getElementById('no-favorites-msg');
+          const container = document.getElementById('maps-container');
+          const noFavMsg = document.getElementById('no-favorites-msg');
 
-        if (!maps.length) {
-          noFavMsg.style.display = 'block';
-          container.innerHTML = '';
-          return;
-        }
+          if (!maps.length) {
+            noFavMsg.style.display = 'block';
+            container.innerHTML = '';
+            return;
+          }
 
-        noFavMsg.style.display = 'none';
-        container.innerHTML = maps.map((map, i) => `
+          noFavMsg.style.display = 'none';
+          container.innerHTML = maps.map((map, i) => `
           <div class="map" id="map-wrapper-${i + 1}">
             <div class="map-overlay" title="${map.title}">${map.title}</div>
             <div id="map${i + 1}" class="map-inner"></div>
@@ -72,45 +72,46 @@
           </div>
         `).join('');
 
-        maps.forEach((map, i) => {
-          const el = document.getElementById(`map${i + 1}`);
-          if (el && map.lat && map.lng) {
-            new google.maps.Map(el, {
-              center: { lat: parseFloat(map.lat), lng: parseFloat(map.lng) },
-              zoom: 8
-            });
-          }
-        });
-
-        document.querySelectorAll('.delete-favorite-btn').forEach(btn => {
-          btn.addEventListener('click', async function() {
-            const mapId = this.getAttribute('data-map-id');
-            if (!mapId) return;
-            if (!confirm('Are you sure you want to remove this favorite?')) return;
-            try {
-              const res = await fetch(`/api/save-favorite/${mapId}`, {
-                method: 'DELETE',
-                headers: { 'Content-Type': 'application/json' }
+          maps.forEach((map, i) => {
+            const el = document.getElementById(`map${i + 1}`);
+            if (el && map.lat && map.lng) {
+              new google.maps.Map(el, {
+                center: { lat: parseFloat(map.lat), lng: parseFloat(map.lng) },
+                zoom: 8
               });
-              if (!res.ok) throw new Error('Failed to delete favorite');
-              this.closest('.map').remove();
-              if (!container.querySelector('.map')) {
-                noFavMsg.style.display = 'block';
-              }
-            } catch (err) {
-              alert('Error deleting favorite');
             }
           });
-        });
-      } catch (err) {
-        console.error(err);
-      }
-    }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      loadGoogleMapsScript('initGoogleMaps');
-    });
-  </script>
+          document.querySelectorAll('.delete-favorite-btn').forEach(btn => {
+            btn.addEventListener('click', async function () {
+              const mapId = this.getAttribute('data-map-id');
+              if (!mapId) return;
+              if (!confirm('Are you sure you want to remove this favorite?')) return;
+              try {
+                const res = await fetch(`/api/save-favorite/${mapId}`, {
+                  method: 'DELETE',
+                  headers: { 'Content-Type': 'application/json' }
+                });
+                if (!res.ok) throw new Error('Failed to delete favorite');
+                this.closest('.map').remove();
+                if (!container.querySelector('.map')) {
+                  noFavMsg.style.display = 'block';
+                }
+              } catch (err) {
+                alert('Error deleting favorite');
+              }
+            });
+          });
+        } catch (err) {
+          console.error(err);
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        loadGoogleMapsScript('initGoogleMaps');
+      });
+    </script>
 
 </body>
+
 </html>

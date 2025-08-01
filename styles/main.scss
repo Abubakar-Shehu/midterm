@@ -15,7 +15,8 @@ h1 {
   font-weight: 700;
   margin-bottom: 1rem;
   text-align: center;
-  color: #1c5040; /* dark green like your menu background */
+  color: #1c5040;
+  /* dark green like your menu background */
 }
 
 /* MENU */
@@ -53,7 +54,7 @@ h1 {
   margin: 0 auto;
   background-color: white;
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 #users li {
@@ -67,6 +68,45 @@ h1 {
   border-bottom: none;
 }
 
+.login select {
+  padding: 12px;
+  border-radius: 5px;
+  border: 1.5px solid #17b585;
+  font-size: 1rem;
+  margin-bottom: 18px;
+  background: #f8f8f8;
+  color: #333;
+  transition: border-color 0.2s;
+}
+
+.login select:focus {
+  border-color: #1c5040;
+  outline: none;
+}
+
+.login label {
+  font-weight: 600;
+  color: #1c5040;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.login input[type="submit"] {
+  background-color: #17b585;
+  color: white;
+  border: none;
+  padding: 12px 0;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.login input[type="submit"]:hover {
+  background-color: #138e6f;
+}
+
 /* Responsive */
 @media (max-width: 600px) {
   body {
@@ -77,14 +117,18 @@ h1 {
     max-width: 100%;
   }
 }
+
 /* Center the entire login container */
 .login {
-  max-width: 400px;        /* limits width for readability */
-  margin: 40px auto;       /* top/bottom margin + auto horizontal centering */
-  background-color: white; /* optional: add background for contrast */
+  max-width: 400px;
+  /* limits width for readability */
+  margin: 40px auto;
+  /* top/bottom margin + auto horizontal centering */
+  background-color: white;
+  /* optional: add background for contrast */
   padding: 30px;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Center the form elements inside */

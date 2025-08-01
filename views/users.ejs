@@ -11,25 +11,25 @@
 
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" />
-
-  <script defer data-domain="localhost" src="http://localhost:8080/"></script>
-  <script>window.apiKey = "<%= apiKey %>"</script>
 </head>
 
 <body>
   <%- include('partials/header') %>
 
-    <h2>Login</h2>
-    <form method="POST" action="/users">
-      <select name="user_id">
-        <% users.forEach(user=> { %>
-          <option value="<%= user.id %>">
-            <%= user.name %> (<%= user.email %>)
-          </option>
-          <% }) %>
-      </select>
-      <button type="submit">Login</button>
-    </form>
+    <div class="login">
+      <h1>Login to MapMap</h1>
+      <form method="POST" action="/users">
+        <label for="user_id">Select your user:</label>
+        <select name="user_id" id="user_id" required>
+          <% users.forEach(user=> { %>
+            <option value="<%= user.id %>">
+              <%= user.name %> (<%= user.email %>)
+            </option>
+            <% }) %>
+        </select>
+        <input type="submit" value="Login" />
+      </form>
+    </div>
 </body>
 
 </html>

@@ -1,25 +1,57 @@
+h1 {
+  text-align: center;
+  margin-top: 32px;
+  font-size: 2.3rem;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
 .options {
   display: flex;
-  gap: 5px;
-  margin: auto;
-  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 32px;
+  margin: 40px auto;
+  justify-content: center;
 }
 
-.options div {
+.city-option {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(30, 80, 64, 0.08);
+  padding: 18px 18px 10px 18px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: 320px;
+  align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
+  cursor: pointer;
+  border: 2px solid transparent;
 }
 
-#map1,
-#map2,
-#map3 {
-  width: 300px;
-  height: 300px;
+.city-option:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 8px 32px rgba(30, 80, 64, 0.16);
+  border-color: #17b585;
 }
 
-button {
+.city-option p {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 12px 0 0 0;
+  color: #1c5040;
+  letter-spacing: 0.5px;
+}
+
+.map-preview {
+  width: 280px;
+  height: 180px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 8px rgba(30, 80, 64, 0.10);
+}
+
+#save-map-btn {
   display: flex;
   justify-self: center;
 }
