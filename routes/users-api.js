@@ -7,10 +7,11 @@
 
 const express = require('express');
 const router  = express.Router();
-const userQueries = require('../db/queries/users');
+// getAllUsers Runs a database query for all users and returns an array of all users objects
+const getAllUsers = require('../db/queries/users');
 
 router.get('/', (req, res) => {
-  userQueries.getUsers()
+  getAllUsers.getUsers()
     .then(users => {
       res.json({ users });
     })

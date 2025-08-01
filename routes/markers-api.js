@@ -1,7 +1,8 @@
 const express = require('express');
 const router  = express.Router();
-const db = require('../db/connection');
+// markerQuery Runs a database query to insert the passed data in to the points table
 const markerQuery = require('../db/queries/insert-points')
+// mapPointQuery Runs a database query to insert the passed data in to the map_points table
 const mapPointQuery = require('../db/queries/insert-map_points')
 
 router.post('/', async (req, res) => {

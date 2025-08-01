@@ -7,7 +7,6 @@
 
 const express = require('express');
 const router  = express.Router();
-const userQueries = require('../db/queries/users');
 
 router.post("/", (req, res) => {
   req.session = null;

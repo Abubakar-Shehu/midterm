@@ -7,7 +7,7 @@
 
 const express = require('express');
 const router  = express.Router();
-const bcrypt = require('bcryptjs');
+// getAllUsers Runs a database query for all users and returns an array of all users objects
 const getAllUsers = require('../db/queries/users');
 
 const apiKey =  process.env.API_KEY;
@@ -18,9 +18,6 @@ router.get('/', (req, res) => {
     // Find the logged-in user by session
     const user = users.find(u => u.id == req.session.user);
     const templateVars = { users, user, apiKey };
-
-    console.log('Session user:', req.session.user);
-    console.log('User found:', user);
 
     res.render('users', templateVars);
   })
@@ -37,7 +34,6 @@ router.post('/', (req, res) => {
   getAllUsers.getUsers()
     .then(users => {
       let user;
-
       for (const existingUser of users) {
         if (existingUser.id == userId){
           user = existingUser;

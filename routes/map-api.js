@@ -8,9 +8,11 @@
 const express = require('express');
 const router  = express.Router();
 const db = require('../db/connection');
-const app = express();
+// mapsQuery Runs a database query for all maps and returns an array of all map objects
 const mapsQuery = require('../db/queries/maps');
+// markerQuery Runs a database query to insert the passed data in to the points table
 const markerQuery = require('../db/queries/insert-points')
+// mapPointQuery Runs a database query to insert the passed data in to the map_points table
 const mapPointQuery = require('../db/queries/insert-map_points')
 
 

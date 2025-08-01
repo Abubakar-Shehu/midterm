@@ -2,9 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const router  = express.Router();
-const db = require('../db/connection');
-const app = express();
-const mapsQuery = require('../db/queries/maps')
+// getAllUsers Runs a database query for all users and returns an array of all users objects
 const getAllUsers = require('../db/queries/users');
 
 const apiKey =  process.env.API_KEY;
