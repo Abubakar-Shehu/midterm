@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="google" content="notranslate" />
+  <title>Your Favourited Maps</title>
+  <meta name="description" content="MapMap lets you do fun stuff with maps." />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" />
+
+  <script>
+    window.apiKey = "<%= apiKey %>";
+    window.userId = <%= typeof user === 'string' ? `'${user}'` : user %>;
+    window.favoriteMapsData = <%- JSON.stringify(maps) %>;
+  </script>
+</head>
+
+<body>
+  <%- include('partials/header') %>
+
+  <main class="content-container">
+    <h2>Your Favourited Maps</h2>
+
+    <% if (!maps || maps.length === 0) { %>
+      <p>You haven't favourited any maps yet.</p>
+    <% } else { %>
+      <div id="maps-container" class="maps-container">
+  <% maps.forEach((map, index) => { %>
+    <div class="map" id="map-wrapper-<%= index + 1 %>">
+      <div class="map-overlay" title="Map <%= index + 1 %>">Map <%= index + 1 %></div>
+      <div id="map<%= index + 1 %>" class="map-inner"></div>
+    </div>
+  <% }); %>
+</div>
+
+    <% } %>
+  </main>
+
+  <!-- Load Google Maps and your JS -->
+  <script src="/scripts/maps2.js"></script>
+  <script src="/scripts/favourite_map.js"></script>
+
+</body>
+
+</html>
