@@ -31,6 +31,42 @@ app.use(cookieSession({
   maxAge: Number(process.env.COOKIE_AGE)
 }))
 
+// Simulate testing like real user (MUST be before all routes)
+app.use((req, res, next) => {
+  if (!req.session.userId) {
+    req.session.userId = 1; // ALICE / othername
+  }
+  next();
+});
+// MAKE SURE TO COMMENT OUT THE ABOVE LINE AFTER TESTING
+
+// GET /api/user/favorites
+app.get('/api/user/favorites', async (req, res) => {
+  const userId = req.session.userId; //
+
+  if (!userId) {
+    return res.status(401).json({ error: 'User not logged in' });
+  }
+
+  try {
+    const dbResult = await getFavouritedMapsByUserId(userId);
+    const cityCoords = {
+      'Toronto Map': { lat: 43.6532, lng: -79.3832 },
+      'New York Map': { lat: 40.7128, lng: -74.0060 },
+      'London Map': { lat: 51.5074, lng: -0.1278 },
+      'Tokyo Map': { lat: 35.6895, lng: 139.6917 }
+    };
+    const maps = dbResult.map(map => ({
+      ...map,
+      ...cityCoords[map.title]
+    }));
+    res.json(maps);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to fetch favorites' });
+  }
+});
+
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const userApiRoutes = require('./routes/users-api');
@@ -43,6 +79,7 @@ const logoutRoutes = require('./routes/logout')
 const markerRoutes = require('./routes/markers-api')
 const userFavouriteRoutes = require('./routes/users_favourite');
 const apiRoutes = require('./routes/api');
+const { getFavouritedMapsByUserId } = require('./db/queries/favourites');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -74,6 +111,37 @@ app.get('/', (req, res) => {
       res.status(500).send('Error loading users');
     });
 });
+
+// Page not found handler
+app.use((req, res, next) => {
+  console.log(`No route matched for ${req.method} ${req.originalUrl}`);
+  res.status(404).send('Page not found');
+});
+
+// Login page
+app.get('/login', (req, res) => {
+  getAllUsers.getUsers()
+    .then(users => {
+      res.render('login', { users, apiKey: process.env.API_KEY });
+    })
+    .catch(err => {
+      res.status(500).send('Error loading login page');
+    });
+});
+
+// POST /api/save-favorite
+// If you use a router for /api/save-favorite, remove this block. If not, fix userId:
+// app.post('/api/save-favorite', async (req, res) => {
+//   const userId = req.session.userId;
+//   const { favoriteMap } = req.body;
+//   try {
+//     await saveFavoriteMapForUser(userId, favoriteMap); // your DB insert function
+//     res.json({ success: true });
+//   } catch (err) {
+//     res.status(500).json({ error: 'Failed to save favorite' });
+//   }
+// });
+
 
 app.listen(PORT, () => {
   (`Example app listening on port ${PORT}`);
