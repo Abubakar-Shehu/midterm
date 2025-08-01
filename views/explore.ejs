@@ -1,3 +1,4 @@
+<!-- explore.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,74 +10,17 @@
 
   <%- include('./partials/header') %>
 
-    <link rel="stylesheet" href="/styles/layout.css" />
-    <link rel="stylesheet" href="/styles/explore.css" />
+  <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/styles/explore.css" />
 
-    <script src="/vendor/jquery-3.0.0.js"></script>
-    <script defer src="/scripts/app.js"></script>
-    <script defer src="/scripts/create_map.js"></script>
-    <script defer src="/scripts/maps3.js"></script>
-    <script>window.apiKey = "<%= apiKey %>"</script>
-</head>
-
-<body>
-  <h1>Explore Maps</h1>
-
-  <!-- Search bar -->
-  <form id="city-search-form" class="city-search-form">
-    <input type="text" id="city-input" name="city" placeholder="Search a city..." required />
-    <button type="submit" id="search-btn">Search</button>
-  </form>
-
-  <!-- Search Result Map -->
-  <div id="search-result-container" style="display: none;">
-    <div id="map-wrapper">
-      <button id="back-button">Back to All Cities</button>
-      <div id="searched-map-container">
-        <div id="searched-map"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Featured maps grouped by continent -->
-  <div id="featured-maps">
-    <div class="city-groups">
-      <div class="continents">
-        <h2>North America</h2>
-        <div class="map-card"><div id="mapLA" class="map-box"></div><p>Los Angeles</p></div>
-        <div class="map-card"><div id="mapVan" class="map-box"></div><p>Vancouver</p></div>
-        <div class="map-card"><div id="mapChicago" class="map-box"></div><p>Chicago</p></div>
-
-        <h2>South America</h2>
-        <div class="map-card"><div id="mapBuenosAires" class="map-box"></div><p>Buenos Aires</p></div>
-        <div class="map-card"><div id="mapSãoPaulo" class="map-box"></div><p>São Paulo</p></div>
-        <div class="map-card"><div id="mapLima" class="map-box"></div><p>Lima</p></div>
-
-        <h2>Europe</h2>
-        <div class="map-card"><div id="mapLondon" class="map-box"></div><p>London</p></div>
-        <div class="map-card"><div id="mapParis" class="map-box"></div><p>Paris</p></div>
-        <div class="map-card"><div id="mapBerlin" class="map-box"></div><p>Berlin</p></div>
-
-        <h2>Asia</h2>
-        <div class="map-card"><div id="mapBeijing" class="map-box"></div><p>Beijing</p></div>
-        <div class="map-card"><div id="mapSeoul" class="map-box"></div><p>Seoul</p></div>
-        <div class="map-card"><div id="mapBangkok" class="map-box"></div><p>Bangkok</p></div>
-
-        <h2>Africa</h2>
-        <div class="map-card"><div id="mapCairo" class="map-box"></div><p>Cairo</p></div>
-        <div class="map-card"><div id="mapNairobi" class="map-box"></div><p>Nairobi</p></div>
-        <div class="map-card"><div id="mapCapeTown" class="map-box"></div><p>Cape Town</p></div>
-
-        <h2>Oceania</h2>
-        <div class="map-card"><div id="mapSydney" class="map-box"></div><p>Sydney</p></div>
-        <div class="map-card"><div id="mapAuckland" class="map-box"></div><p>Auckland</p></div>
-        <div class="map-card"><div id="mapSuva" class="map-box"></div><p>Suva</p></div>
-      </div>
-    </div>
-  </div>
-
+  <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/app.js"></script>
+  <script defer src="/scripts/maps3.js"></script>
+  <script defer src="/scripts/search.js"></script>
   <script>
-  const cityCoords = {
+    window.apiKey = "<%= apiKey %>";
+    window.currentUserId = <%= user ? user.id : 'null' %>;
+    window.cityCoords = {
     "los angeles": { lat: 34.0522, lng: -118.2437 },
     "vancouver": { lat: 49.2827, lng: -123.1207 },
     "chicago": { lat: 41.8781, lng: -87.6298 },
@@ -127,77 +71,66 @@
     "hanoi": { lat: 21.0285, lng: 105.8542 },
     "riyadh": { lat: 24.7136, lng: 46.6753 },
     "addis ababa": { lat: 9.03, lng: 38.74 }
-  };
-
-    let map, marker;
-
-    $(document).ready(() => {
-      $('#city-search-form').on('submit', function (e) {
-        e.preventDefault();
-        const city = $('#city-input').val().trim().toLowerCase();
-        const coords = cityCoords[city];
-
-        if (!coords) {
-          alert("City not found. Try another.");
-          return;
-        }
-
-        $('#featured-maps').hide();
-        $('#search-result-container').show();
-
-        if (!map) {
-          map = new google.maps.Map(document.getElementById("searched-map"), {
-            center: coords,
-            zoom: 10
-          });
-
-          marker = new google.maps.Marker({
-            position: coords,
-            map: map,
-            title: city
-          });
-        } else {
-          map.setCenter(coords);
-          marker.setPosition(coords);
-          marker.setTitle(city);
-        }
-      });
-
-      $('#back-button').on('click', function () {
-        $('#search-result-container').hide();
-        $('#featured-maps').show();
-        $('#city-input').val('');
-      });
-    });
-
-    function initStaticMap(id, coords) {
-      new google.maps.Map(document.getElementById(id), {
-        center: coords,
-        zoom: 10
-      });
-    }
-
-    window.initMap = function () {
-      initStaticMap('mapLA', cityCoords["los angeles"]);
-      initStaticMap('mapVan', cityCoords["vancouver"]);
-      initStaticMap('mapChicago', cityCoords["chicago"]);
-      initStaticMap('mapBuenosAires', cityCoords["buenos aires"]);
-      initStaticMap('mapSaoPaulo', cityCoords["sao paulo"]);
-      initStaticMap('mapLima', cityCoords["lima"]);
-      initStaticMap('mapLondon', cityCoords["london"]);
-      initStaticMap('mapParis', cityCoords["paris"]);
-      initStaticMap('mapBerlin', cityCoords["berlin"]);
-      initStaticMap('mapBeijing', cityCoords["beijing"]);
-      initStaticMap('mapSeoul', cityCoords["seoul"]);
-      initStaticMap('mapBangkok', cityCoords["bangkok"]);
-      initStaticMap('mapCairo', cityCoords["cairo"]);
-      initStaticMap('mapNairobi', cityCoords["nairobi"]);
-      initStaticMap('mapCapeTown', cityCoords["cape town"]);
-      initStaticMap('mapSydney', cityCoords["sydney"]);
-      initStaticMap('mapAuckland', cityCoords["auckland"]);
-      initStaticMap('mapSuva', cityCoords["suva"]);
     }
   </script>
-</body>
+</head>
+<body>
+  <h1>Explore Maps</h1>
 
+  <!-- Search Bar -->
+  <form id="city-search-form" class="city-search-form">
+    <input type="text" id="city-input" name="city" placeholder="Search a city..." required />
+    <button type="submit" id="search-btn">Search</button>
+  </form>
+
+  <!-- Search Result Map (Initially Hidden) -->
+  <div id="search-result-container" style="display: none;">
+    <div id="map-wrapper">
+      <div id="search-map-buttons">
+        <button id="back-button">Back to All Cities</button>
+        <button id="create-map-btn">Create New Map</button>
+      </div>
+      <div id="searched-map-container">
+        <div id="searched-map"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Featured Maps -->
+  <div id="featured-maps">
+    <div class="city-groups">
+      <div class="continents">
+        <h2>North America</h2>
+        <div class="map-card"><div id="mapLA" class="map-box"></div><p>Los Angeles</p></div>
+        <div class="map-card"><div id="mapVan" class="map-box"></div><p>Vancouver</p></div>
+        <div class="map-card"><div id="mapChicago" class="map-box"></div><p>Chicago</p></div>
+
+        <h2>South America</h2>
+        <div class="map-card"><div id="mapBuenosAires" class="map-box"></div><p>Buenos Aires</p></div>
+        <div class="map-card"><div id="mapSãoPaulo" class="map-box"></div><p>São Paulo</p></div>
+        <div class="map-card"><div id="mapLima" class="map-box"></div><p>Lima</p></div>
+
+        <h2>Europe</h2>
+        <div class="map-card"><div id="mapLondon" class="map-box"></div><p>London</p></div>
+        <div class="map-card"><div id="mapParis" class="map-box"></div><p>Paris</p></div>
+        <div class="map-card"><div id="mapBerlin" class="map-box"></div><p>Berlin</p></div>
+
+        <h2>Asia</h2>
+        <div class="map-card"><div id="mapBeijing" class="map-box"></div><p>Beijing</p></div>
+        <div class="map-card"><div id="mapSeoul" class="map-box"></div><p>Seoul</p></div>
+        <div class="map-card"><div id="mapBangkok" class="map-box"></div><p>Bangkok</p></div>
+
+        <h2>Africa</h2>
+        <div class="map-card"><div id="mapCairo" class="map-box"></div><p>Cairo</p></div>
+        <div class="map-card"><div id="mapNairobi" class="map-box"></div><p>Nairobi</p></div>
+        <div class="map-card"><div id="mapCapeTown" class="map-box"></div><p>Cape Town</p></div>
+
+        <h2>Oceania</h2>
+        <div class="map-card"><div id="mapSydney" class="map-box"></div><p>Sydney</p></div>
+        <div class="map-card"><div id="mapAuckland" class="map-box"></div><p>Auckland</p></div>
+        <div class="map-card"><div id="mapSuva" class="map-box"></div><p>Suva</p></div>
+      </div>
+    </div>
+  </div>
+</body>
 </html>

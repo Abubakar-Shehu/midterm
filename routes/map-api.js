@@ -23,4 +23,23 @@ router.get('/', (req, res) => {
     });
 });
 
+// POST: Create a new map
+router.post('/', (req, res) => {
+  const { userId, name, latitude, longitude } = req.body;
+
+  db.query(`
+    INSERT INTO maps (user_id, name, latitude, longitude)
+    VALUES ($1, $2, $3, $4)
+    RETURNING id;
+  `, [userId, name, latitude, longitude])
+    .then(result => {
+      const mapId = result.rows[0].id;
+      res.json({ mapId });
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: 'Failed to create map' });
+    });
+});
+
 module.exports = router;
