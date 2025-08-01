@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="google" content="notranslate" />
+  <title>Your Favourited Maps</title>
+  <meta name="description" content="MapMap lets you do fun stuff with maps." />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" />
+
+  <script defer data-domain="localhost" src="http://localhost:8080/"></script>
+  <script>window.apiKey = "<%= apiKey %>"</script>
+</head>
+
+<body>
+  <%- include('partials/header') %>
+
+  <main class="content-container">
+    <h2>Your Favourited Maps</h2>
+
+    <% if (!maps || maps.length === 0) { %>
+      <p>You haven't favourited any maps yet.</p>
+    <% } else { %>
+      <ul>
+        <% maps.forEach(map => { %>
+          <li>
+            <strong><%= map.title %></strong><br />
+            <%= map.description %>
+          </li>
+        <% }); %>
+      </ul>
+    <% } %>
+  </main>
+</body>
+
+</html>
