@@ -23,21 +23,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(express.json());
 
-// // setting up session for favorite maps
-// app.use(session({
-//   secret: 'yourSecretHere',
-//   resave: false,
-//   saveUninitialized: false,
-//   cookie: { secure: false, maxAge: 6000 } // secure: true for HTTPS, false for HTTP
-// }));
-
-// Simulate testing like real user
-// app.use((req, res, next) => {
-//   if (!req.session.userId) {
-//     req.session.userId = 'someUserId123'; // replace with real user ID after login
-//   }
-//   next();
-// });
 const cookieKeys = process.env.COOKIE_KEY.split(',')
 
 app.use(cookieSession({

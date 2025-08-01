@@ -24,7 +24,6 @@
 
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
-  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
   const response = await fetch('/api/maps');
   const { maps } = await response.json();
@@ -58,9 +57,9 @@ async function initMap() {
     const infoWindow = new google.maps.InfoWindow({
       content: `
         <div>
-          <label for="marker-info">Marker Info:</label>
-          <input id="marker-title" type="text" placeholder="Title" />
-          <input id="marker-description" type="text" placeholder="Description" />
+          <label for="marker-info">Marker Info:</label><br>
+          <input id="marker-title" type="text" placeholder="Title" /><br>
+          <input id="marker-description" type="text" placeholder="Description" /><br>
           <input id="marker-image" type="text" placeholder="Image Link" />
           <button id="save-marker-info">Save</button>
         </div>
@@ -91,16 +90,22 @@ async function initMap() {
         })
         .then(res => res.json())
         .then(data => {
-          infoWindow.setContent(`<div><strong>Info:</strong> ${description}</div>`);
+          infoWindow.setContent(`<strong>${title}</strong><br><em>${description}</em><br>`);
 
         })
         .catch(err => {
           infoWindow.setContent('<div style="color:red;">Error saving marker!</div>');
         });
 
+        marker.addListener('click', function() {
+          infoWindow.open(contentMap, marker);
+        });
+
       };
     });
   });
+
+
 }
 
 initMap();
