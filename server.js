@@ -118,31 +118,6 @@ app.use((req, res, next) => {
   res.status(404).send('Page not found');
 });
 
-// Login page
-app.get('/login', (req, res) => {
-  getAllUsers.getUsers()
-    .then(users => {
-      res.render('login', { users, apiKey: process.env.API_KEY });
-    })
-    .catch(err => {
-      res.status(500).send('Error loading login page');
-    });
-});
-
-// POST /api/save-favorite
-// If you use a router for /api/save-favorite, remove this block. If not, fix userId:
-// app.post('/api/save-favorite', async (req, res) => {
-//   const userId = req.session.userId;
-//   const { favoriteMap } = req.body;
-//   try {
-//     await saveFavoriteMapForUser(userId, favoriteMap); // your DB insert function
-//     res.json({ success: true });
-//   } catch (err) {
-//     res.status(500).json({ error: 'Failed to save favorite' });
-//   }
-// });
-
-
 app.listen(PORT, () => {
   (`Example app listening on port ${PORT}`);
 });
