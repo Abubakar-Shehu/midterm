@@ -42,7 +42,7 @@ app.use(cookieSession({
 // Simulate testing like real user
 app.use((req, res, next) => {
   if (!req.session.userId) {
-    req.session.userId = 'someUserId123';
+    req.session.userId = 1; // <-- integer, replace 1 with a valid user ID in your DB
   }
   next();
 });

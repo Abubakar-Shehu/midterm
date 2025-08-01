@@ -7,16 +7,17 @@ console.log('users_favourite router loaded');
 router.get('/', (req, res) => {
   console.log('GET /users/favourites/ route hit');
 
-  const userId = req.session.user;
+  const userId = Number(req.session.userId);
 
   if (!userId) return res.redirect('/users');
 
   getFavouritedMapsByUserId(userId)
-    .then(favouriteMaps => {
+    .then(maps => {
+      console.log('Fetched favourite maps:', maps);
       res.render('favourite', {
-        maps: favouriteMaps,
+        maps,
         user: userId,
-        apiKey: process.env.API_KEY  // ✅ Pass the API key to EJS
+        apiKey: process.env.API_KEY || ''
       });
     })
     .catch(err => {
