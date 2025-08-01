@@ -6,52 +6,70 @@
  */
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const db = require('../db/connection');
-const app = express();
-const mapsQuery = require('../db/queries/maps')
+const mapsQuery = require('../db/queries/maps');
 const getAllUsers = require('../db/queries/users');
 
-const apiKey =  process.env.API_KEY;
+const apiKey = process.env.API_KEY;
 
+// Route to show all maps (homepage for city selection)
 router.get('/', (req, res) => {
   getAllUsers.getUsers()
-  .then(users => {
-    // Find the logged-in user by session
-    const user = users.find(u => u.id == req.session.user);
-    const templateVars = { users, user, apiKey };
-    res.render('create', templateVars);
-  })
-  .catch(err => {
-    res.status(500).send('Error loading users');
-  });
-})
+    .then(users => {
+      const user = users.find(u => u.id == req.session.user);
+      const userId = req.session.user;
 
+      db.query(`
+        SELECT * FROM maps
+        WHERE user_id = $1
+        ORDER BY id DESC;
+      `, [userId])
+        .then(result => {
+          const maps = result.rows;
+          const templateVars = { users, user, maps, apiKey };
+          res.render('create', templateVars);
+        })
+        .catch(err => {
+          console.error('Error loading user maps:', err);
+          res.status(500).send('Could not load maps');
+        });
+    })
+    .catch(err => {
+      res.status(500).send('Error loading users');
+    });
+});
+
+// Route to show a specific map creation page
 router.get('/:id', (req, res) => {
   getAllUsers.getUsers()
-  .then(users => {
-    // Find the logged-in user by session
-    const user = users.find(u => u.id == req.session.user);
-    const mapId = req.params.id;
-    mapsQuery.getMaps()
-      .then(maps => {
-        let neededMap;
+    .then(users => {
+      const user = users.find(u => u.id == req.session.user);
+      const mapId = Number(req.params.id);
 
-        for (const availableMap of maps) {
-          if (availableMap.id == mapId){
-            neededMap = availableMap;
+      mapsQuery.getMaps()
+        .then(maps => {
+          const neededMap = maps.find(m => m.id === mapId);
+
+          if (!neededMap) {
+            return res.status(404).send('Map not found');
           }
-        }
 
-        const mapName = neededMap.name
+          const templateVars = {
+            users,
+            user,
+            mapName: neededMap.name,
+            mapId: neededMap.id,
+            apiKey
+          };
 
-        const templateVars = { users, user, mapName, mapId, apiKey };
-        res.render('create_maps', templateVars);
-      })
-  })
-  .catch(err => {
-    res.status(500).send('Error loading users');
-  });
+          res.render('create_maps', templateVars);
+        });
+    })
+    .catch(err => {
+      console.error('Error loading data:', err);
+      res.status(500).send('Server error');
+    });
 });
 
 module.exports = router;
