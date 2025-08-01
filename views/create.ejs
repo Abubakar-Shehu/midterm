@@ -27,75 +27,54 @@
 
     <h1>Choose Your City</h1>
 
-    <div class="options">
+    <% const seen=new Set(['toronto', 'new york' , 'london' ]); %> <!-- already hardcoded -->
+      <% for (let map of maps) { const city=map.name.toLowerCase(); if (!seen.has(city)) { seen.add(city); %>
+        <div class="city-option" data-city="<%= map.name %>" data-lat="<%= map.latitude %>"
+          data-lng="<%= map.longitude %>">
+          <div class="map-preview" id="map-<%= map.id %>" style="width: 300px; height: 300px;"></div>
+          <a href="/create/<%= map.id %>">
+            <p>
+              <%= map.name.charAt(0).toUpperCase() + map.name.slice(1) %>
+            </p>
+          </a>
+        </div>
+        <% } } %>
+          </div>
 
-      <div class="city-option" data-city="Toronto" data-lat="43.6532" data-lng="-79.3832">
-        <div class="map-preview" id="map1"></div>
-        <a href="/create/1">
-          <p>Toronto</p>
-        </a>
-      </div>
-      <div class="city-option" data-city="New York" data-lat="40.7128" data-lng="-74.0060">
-        <div class="map-preview" id="map2"></div>
-        <a href="/create/2">
-          <p>New York</p>
-        </a>
-      </div>
-      <div class="city-option" data-city="London" data-lat="51.5074" data-lng="-0.1278">
-        <div class="map-preview" id="map3"></div>
-        <a href="/create/3">
-          <p>London</p>
-        </a>
-      </div>
-      <% const seen = new Set(['toronto', 'new york', 'london']); %> <!-- already hardcoded -->
-    <% for (let map of maps) {
-      const city = map.name.toLowerCase();
-      if (!seen.has(city)) {
-        seen.add(city);
-    %>
-      <div class="city-option" data-city="<%= map.name %>" data-lat="<%= map.latitude %>" data-lng="<%= map.longitude %>">
-        <div class="map-preview" id="map-<%= map.id %>" style="width: 300px; height: 300px;"></div>
-        <a href="/create/<%= map.id %>"><p><%= map.name.charAt(0).toUpperCase() + map.name.slice(1) %></p></a>
-      </div>
-    <% } } %>
-    </div>
+          <!-- Scripts to load preview maps -->
+          <script>
+            function initMapPreviews() {
+              const mapBoxes = document.querySelectorAll('.city-option');
 
-<!-- Scripts to load preview maps -->
-<script>
-  function initMapPreviews() {
-    const mapBoxes = document.querySelectorAll('.city-option');
+              mapBoxes.forEach(box => {
+                const lat = parseFloat(box.getAttribute('data-lat'));
+                const lng = parseFloat(box.getAttribute('data-lng'));
+                const mapDiv = box.querySelector('.map-preview');
 
-    mapBoxes.forEach(box => {
-      const lat = parseFloat(box.getAttribute('data-lat'));
-      const lng = parseFloat(box.getAttribute('data-lng'));
-      const mapDiv = box.querySelector('.map-preview');
+                if (mapDiv) {
+                  new google.maps.Map(mapDiv, {
+                    center: { lat, lng },
+                    zoom: 12
+                  });
+                }
+              });
+            }
 
-      if (mapDiv) {
-        new google.maps.Map(mapDiv, {
-          center: { lat, lng },
-          zoom: 12
-        });
-      }
-    });
-  }
+            window.initMap = initMapPreviews;
+          </script>
 
-  window.initMap = initMapPreviews;
-</script>
+          <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= apiKey %>&callback=initMap">
+          </script>
 
-<script async
-  defer
-  src="https://maps.googleapis.com/maps/api/js?key=<%= apiKey %>&callback=initMap">
-</script>
-
-    <div id="expanded-map-container" style="display:none;">
-      <h2 id="selected-city"></h2>
-      <div id="expanded-map" style="width: 600px; height: 400px;"></div>
-      <form id="marker-form" method="POST" action="/create">
-        <input type="hidden" name="city" id="city-input" />
-        <input type="hidden" name="markers" id="markers-input" />
-        <button type="submit">Save Markers</button>
-      </form>
-    </div>
+          <div id="expanded-map-container" style="display:none;">
+            <h2 id="selected-city"></h2>
+            <div id="expanded-map" style="width: 600px; height: 400px;"></div>
+            <form id="marker-form" method="POST" action="/create">
+              <input type="hidden" name="city" id="city-input" />
+              <input type="hidden" name="markers" id="markers-input" />
+              <button type="submit">Save Markers</button>
+            </form>
+          </div>
 </body>
 
 </html>

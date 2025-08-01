@@ -118,6 +118,7 @@ CREATE TABLE map_points (
   id SERIAL PRIMARY KEY,
   map_id INTEGER NOT NULL REFERENCES maps(id) ON DELETE CASCADE,
   point_id INTEGER NOT NULL REFERENCES points(id) ON DELETE CASCADE,
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   UNIQUE (map_id, point_id) -- avoid duplicate links
 );
 

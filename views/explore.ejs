@@ -1,6 +1,7 @@
 <!-- explore.ejs -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="google" content="notranslate" />
@@ -10,70 +11,72 @@
 
   <%- include('./partials/header') %>
 
-  <link rel="stylesheet" href="/styles/layout.css" />
-  <link rel="stylesheet" href="/styles/explore.css" />
+    <link rel="stylesheet" href="/styles/layout.css" />
+    <link rel="stylesheet" href="/styles/explore.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
 
-  <script src="/vendor/jquery-3.0.0.js"></script>
-  <script defer src="/scripts/app.js"></script>
-  <script defer src="/scripts/maps3.js"></script>
-  <script defer src="/scripts/search.js"></script>
-  <script>
-    window.apiKey = "<%= apiKey %>";
-    window.currentUserId = <%= user ? user.id : 'null' %>;
-    window.cityCoords = {
-    "los angeles": { lat: 34.0522, lng: -118.2437 },
-    "vancouver": { lat: 49.2827, lng: -123.1207 },
-    "chicago": { lat: 41.8781, lng: -87.6298 },
-    "new york": { lat: 40.7128, lng: -74.0060 },
-    "toronto": { lat: 43.65107, lng: -79.347015 },
-    "mexico city": { lat: 19.4326, lng: -99.1332 },
-    "buenos aires": { lat: -34.6037, lng: -58.3816 },
-    "sao paulo": { lat: -23.5505, lng: -46.6333 },
-    "lima": { lat: -12.0464, lng: -77.0428 },
-    "bogota": { lat: 4.711, lng: -74.0721 },
-    "london": { lat: 51.5074, lng: -0.1278 },
-    "paris": { lat: 48.8566, lng: 2.3522 },
-    "berlin": { lat: 52.52, lng: 13.4050 },
-    "madrid": { lat: 40.4168, lng: -3.7038 },
-    "rome": { lat: 41.9028, lng: 12.4964 },
-    "amsterdam": { lat: 52.3676, lng: 4.9041 },
-    "barcelona": { lat: 41.3851, lng: 2.1734 },
-    "istanbul": { lat: 41.0082, lng: 28.9784 },
-    "moscow": { lat: 55.7558, lng: 37.6173 },
-    "beijing": { lat: 39.9042, lng: 116.4074 },
-    "shanghai": { lat: 31.2304, lng: 121.4737 },
-    "tokyo": { lat: 35.6895, lng: 139.6917 },
-    "osaka": { lat: 34.6937, lng: 135.5023 },
-    "hong kong": { lat: 22.3193, lng: 114.1694 },
-    "seoul": { lat: 37.5665, lng: 126.9780 },
-    "bangkok": { lat: 13.7563, lng: 100.5018 },
-    "jakarta": { lat: -6.2088, lng: 106.8456 },
-    "manila": { lat: 14.5995, lng: 120.9842 },
-    "delhi": { lat: 28.6139, lng: 77.2090 },
-    "mumbai": { lat: 19.0760, lng: 72.8777 },
-    "karachi": { lat: 24.8607, lng: 67.0011 },
-    "cairo": { lat: 30.0444, lng: 31.2357 },
-    "nairobi": { lat: -1.2921, lng: 36.8219 },
-    "lagos": { lat: 6.5244, lng: 3.3792 },
-    "johannesburg": { lat: -26.2041, lng: 28.0473 },
-    "cape town": { lat: -33.9249, lng: 18.4241 },
-    "sydney": { lat: -33.8688, lng: 151.2093 },
-    "melbourne": { lat: -37.8136, lng: 144.9631 },
-    "auckland": { lat: -36.8485, lng: 174.7633 },
-    "suva": { lat: -18.1248, lng: 178.4501 },
-    "riyadh": { lat: 24.7136, lng: 46.6753 },
-    "dubai": { lat: 25.2048, lng: 55.2708 },
-    "tehran": { lat: 35.6892, lng: 51.3890 },
-    "baghdad": { lat: 33.3128, lng: 44.3615 },
-    "singapore": { lat: 1.3521, lng: 103.8198 },
-    "kuala lumpur": { lat: 3.139, lng: 101.6869 },
-    "doha": { lat: 25.276987, lng: 51.520008 },
-    "hanoi": { lat: 21.0285, lng: 105.8542 },
-    "riyadh": { lat: 24.7136, lng: 46.6753 },
-    "addis ababa": { lat: 9.03, lng: 38.74 }
-    }
-  </script>
+    <script src="/vendor/jquery-3.0.0.js"></script>
+    <script defer src="/scripts/app.js"></script>
+    <script defer src="/scripts/maps3.js"></script>
+    <script defer src="/scripts/search.js"></script>
+    <script>
+      window.apiKey = "<%= apiKey %>";
+      window.currentUserId = "<%= user ? user.id : 'null' %>";
+      window.cityCoords = {
+        "los angeles": { lat: 34.0522, lng: -118.2437 },
+        "vancouver": { lat: 49.2827, lng: -123.1207 },
+        "chicago": { lat: 41.8781, lng: -87.6298 },
+        "new york": { lat: 40.7128, lng: -74.0060 },
+        "toronto": { lat: 43.65107, lng: -79.347015 },
+        "mexico city": { lat: 19.4326, lng: -99.1332 },
+        "buenos aires": { lat: -34.6037, lng: -58.3816 },
+        "sao paulo": { lat: -23.5505, lng: -46.6333 },
+        "lima": { lat: -12.0464, lng: -77.0428 },
+        "bogota": { lat: 4.711, lng: -74.0721 },
+        "london": { lat: 51.5074, lng: -0.1278 },
+        "paris": { lat: 48.8566, lng: 2.3522 },
+        "berlin": { lat: 52.52, lng: 13.4050 },
+        "madrid": { lat: 40.4168, lng: -3.7038 },
+        "rome": { lat: 41.9028, lng: 12.4964 },
+        "amsterdam": { lat: 52.3676, lng: 4.9041 },
+        "barcelona": { lat: 41.3851, lng: 2.1734 },
+        "istanbul": { lat: 41.0082, lng: 28.9784 },
+        "moscow": { lat: 55.7558, lng: 37.6173 },
+        "beijing": { lat: 39.9042, lng: 116.4074 },
+        "shanghai": { lat: 31.2304, lng: 121.4737 },
+        "tokyo": { lat: 35.6895, lng: 139.6917 },
+        "osaka": { lat: 34.6937, lng: 135.5023 },
+        "hong kong": { lat: 22.3193, lng: 114.1694 },
+        "seoul": { lat: 37.5665, lng: 126.9780 },
+        "bangkok": { lat: 13.7563, lng: 100.5018 },
+        "jakarta": { lat: -6.2088, lng: 106.8456 },
+        "manila": { lat: 14.5995, lng: 120.9842 },
+        "delhi": { lat: 28.6139, lng: 77.2090 },
+        "mumbai": { lat: 19.0760, lng: 72.8777 },
+        "karachi": { lat: 24.8607, lng: 67.0011 },
+        "cairo": { lat: 30.0444, lng: 31.2357 },
+        "nairobi": { lat: -1.2921, lng: 36.8219 },
+        "lagos": { lat: 6.5244, lng: 3.3792 },
+        "johannesburg": { lat: -26.2041, lng: 28.0473 },
+        "cape town": { lat: -33.9249, lng: 18.4241 },
+        "sydney": { lat: -33.8688, lng: 151.2093 },
+        "melbourne": { lat: -37.8136, lng: 144.9631 },
+        "auckland": { lat: -36.8485, lng: 174.7633 },
+        "suva": { lat: -18.1248, lng: 178.4501 },
+        "riyadh": { lat: 24.7136, lng: 46.6753 },
+        "dubai": { lat: 25.2048, lng: 55.2708 },
+        "tehran": { lat: 35.6892, lng: 51.3890 },
+        "baghdad": { lat: 33.3128, lng: 44.3615 },
+        "singapore": { lat: 1.3521, lng: 103.8198 },
+        "kuala lumpur": { lat: 3.139, lng: 101.6869 },
+        "doha": { lat: 25.276987, lng: 51.520008 },
+        "hanoi": { lat: 21.0285, lng: 105.8542 },
+        "riyadh": { lat: 24.7136, lng: 46.6753 },
+        "addis ababa": { lat: 9.03, lng: 38.74 }
+      }
+    </script>
 </head>
+
 <body>
   <h1>Explore Maps</h1>
 
@@ -101,36 +104,91 @@
     <div class="city-groups">
       <div class="continents">
         <h2>North America</h2>
-        <div class="map-card"><div id="mapLA" class="map-box"></div><p>Los Angeles</p></div>
-        <div class="map-card"><div id="mapVan" class="map-box"></div><p>Vancouver</p></div>
-        <div class="map-card"><div id="mapChicago" class="map-box"></div><p>Chicago</p></div>
+        <div class="map-card">
+          <div id="mapLA" class="map-box"></div>
+          <p>Los Angeles</p>
+        </div>
+        <div class="map-card">
+          <div id="mapVan" class="map-box"></div>
+          <p>Vancouver</p>
+        </div>
+        <div class="map-card">
+          <div id="mapChicago" class="map-box"></div>
+          <p>Chicago</p>
+        </div>
 
         <h2>South America</h2>
-        <div class="map-card"><div id="mapBuenosAires" class="map-box"></div><p>Buenos Aires</p></div>
-        <div class="map-card"><div id="mapSãoPaulo" class="map-box"></div><p>São Paulo</p></div>
-        <div class="map-card"><div id="mapLima" class="map-box"></div><p>Lima</p></div>
+        <div class="map-card">
+          <div id="mapBuenosAires" class="map-box"></div>
+          <p>Buenos Aires</p>
+        </div>
+        <div class="map-card">
+          <div id="mapSãoPaulo" class="map-box"></div>
+          <p>São Paulo</p>
+        </div>
+        <div class="map-card">
+          <div id="mapLima" class="map-box"></div>
+          <p>Lima</p>
+        </div>
 
         <h2>Europe</h2>
-        <div class="map-card"><div id="mapLondon" class="map-box"></div><p>London</p></div>
-        <div class="map-card"><div id="mapParis" class="map-box"></div><p>Paris</p></div>
-        <div class="map-card"><div id="mapBerlin" class="map-box"></div><p>Berlin</p></div>
+        <div class="map-card">
+          <div id="mapLondon" class="map-box"></div>
+          <p>London</p>
+        </div>
+        <div class="map-card">
+          <div id="mapParis" class="map-box"></div>
+          <p>Paris</p>
+        </div>
+        <div class="map-card">
+          <div id="mapBerlin" class="map-box"></div>
+          <p>Berlin</p>
+        </div>
 
         <h2>Asia</h2>
-        <div class="map-card"><div id="mapBeijing" class="map-box"></div><p>Beijing</p></div>
-        <div class="map-card"><div id="mapSeoul" class="map-box"></div><p>Seoul</p></div>
-        <div class="map-card"><div id="mapBangkok" class="map-box"></div><p>Bangkok</p></div>
+        <div class="map-card">
+          <div id="mapBeijing" class="map-box"></div>
+          <p>Beijing</p>
+        </div>
+        <div class="map-card">
+          <div id="mapSeoul" class="map-box"></div>
+          <p>Seoul</p>
+        </div>
+        <div class="map-card">
+          <div id="mapBangkok" class="map-box"></div>
+          <p>Bangkok</p>
+        </div>
 
         <h2>Africa</h2>
-        <div class="map-card"><div id="mapCairo" class="map-box"></div><p>Cairo</p></div>
-        <div class="map-card"><div id="mapNairobi" class="map-box"></div><p>Nairobi</p></div>
-        <div class="map-card"><div id="mapCapeTown" class="map-box"></div><p>Cape Town</p></div>
+        <div class="map-card">
+          <div id="mapCairo" class="map-box"></div>
+          <p>Cairo</p>
+        </div>
+        <div class="map-card">
+          <div id="mapNairobi" class="map-box"></div>
+          <p>Nairobi</p>
+        </div>
+        <div class="map-card">
+          <div id="mapCapeTown" class="map-box"></div>
+          <p>Cape Town</p>
+        </div>
 
         <h2>Oceania</h2>
-        <div class="map-card"><div id="mapSydney" class="map-box"></div><p>Sydney</p></div>
-        <div class="map-card"><div id="mapAuckland" class="map-box"></div><p>Auckland</p></div>
-        <div class="map-card"><div id="mapSuva" class="map-box"></div><p>Suva</p></div>
+        <div class="map-card">
+          <div id="mapSydney" class="map-box"></div>
+          <p>Sydney</p>
+        </div>
+        <div class="map-card">
+          <div id="mapAuckland" class="map-box"></div>
+          <p>Auckland</p>
+        </div>
+        <div class="map-card">
+          <div id="mapSuva" class="map-box"></div>
+          <p>Suva</p>
+        </div>
       </div>
     </div>
   </div>
 </body>
+
 </html>

@@ -9,7 +9,10 @@ const express = require('express');
 const router  = express.Router();
 const db = require('../db/connection');
 const app = express();
-const mapsQuery = require('../db/queries/maps')
+const mapsQuery = require('../db/queries/maps');
+const markerQuery = require('../db/queries/insert-points')
+const mapPointQuery = require('../db/queries/insert-map_points')
+
 
 router.get('/', (req, res) => {
   mapsQuery.getMaps()
@@ -40,6 +43,27 @@ router.post('/', (req, res) => {
       console.error(err);
       res.status(500).json({ error: 'Failed to create map' });
     });
+});
+
+router.post('/with-markers', async (req, res) => {
+  const { mapId, markers, userId } = req.body;
+  if (!mapId || !Array.isArray(markers) || markers.length === 0) {
+    return res.status(400).json({ error: 'Missing mapId or markers' });
+  }
+
+  try {
+    for (const marker of markers) {
+      const { title, description, image, longitude, latitude } = marker;
+      const point = await markerQuery.saveMarker(title, description, image, longitude, latitude);
+
+      await mapPointQuery.saveMapPoints(mapId, point.id, userId);
+    }
+    res.json({ success: true });
+
+  } catch (err) {
+    console.error('Error saving map and markers:', err);
+    res.status(500).json({ error: 'Database error' });
+  }
 });
 
 module.exports = router;

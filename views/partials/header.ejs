@@ -1,26 +1,27 @@
-<!-- views/partials/header.ejs -->
 <div id="menu" class="menu-home">
   <div class="menu-inner">
     <a class="menu-logo-clickable" href="/">
       <div class="menu-big-site-name">MapMap</div>
     </a>
 
-    <div class="menu-right">
-      <nav id="menu-pages">
-        <ul>
-          <li><a href="/explore">Explore Maps</a></li>
-          <li><a href="/create">Create Map</a></li>
-          <% if (user) { %>
-            <p>Logged in as: <%= user.name %>
-            </p>
-            <form method="POST" action="/logout">
-              <button type="submit" class="btn btn-primary">Logout</button>
-            </form>
-            <% } else { %>
-              <a href="/users">Login</a>
-              <% } %>
-        </ul>
-      </nav>
+    <nav id="menu-pages">
+      <ul>
+        <li><a href="/explore">Explore Maps</a></li>
+        <li><a href="/create">Create Map</a></li>
+      </ul>
+    </nav>
+
+    <div class="menu-user">
+      <% if (user) { %>
+        <span class="user-greeting">Logged in as <b>
+            <%= user.name %>
+          </b></span>
+        <form method="POST" action="/logout" style="display:inline;">
+          <button type="submit" class="btn btn-primary logout-btn">Logout</button>
+        </form>
+        <% } else { %>
+          <a href="/users" class="btn btn-primary login-btn">Login</a>
+          <% } %>
     </div>
   </div>
 </div>

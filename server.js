@@ -31,15 +31,6 @@ app.use(cookieSession({
   maxAge: Number(process.env.COOKIE_AGE)
 }))
 
-// Simulate testing like real user
-app.use((req, res, next) => {
-  if (!req.session.userId) {
-    req.session.userId = 1; // <-- integer, replace 1 with a valid user ID in your DB
-  }
-  next();
-});
-// MAKE SURE TO COMMENT OUT THE ABOVE LINE AFTER TESTING
-
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const userApiRoutes = require('./routes/users-api');
@@ -75,7 +66,7 @@ app.get('/', (req, res) => {
   getAllUsers.getUsers()
     .then(users => {
       // Find the logged-in user by session
-      const user = users.find(u => u.id == req.session.userId);
+      const user = users.find(u => u.id == req.session.user);
       const templateVars = { users, user, apiKey };
       res.render('index', templateVars);
     })
@@ -83,26 +74,6 @@ app.get('/', (req, res) => {
       res.status(500).send('Error loading users');
     });
 });
-
-// FOR TESTING
-app.use((req, res, next) => {
-  console.log(`No route matched for ${req.method} ${req.originalUrl}`);
-  res.status(404).send('Page not found');
-});
-// FOR TESTING
-
-// FOR TESTING
-app.get('/login', (req, res) => {
-  // You'll likely want to pass users and apiKey here
-  getAllUsers.getUsers()
-    .then(users => {
-      res.render('login', { users, apiKey: process.env.API_KEY });
-    })
-    .catch(err => {
-      res.status(500).send('Error loading login page');
-    });
-});
-// FOR TESTING
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
