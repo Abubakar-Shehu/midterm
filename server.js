@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // load .env data into process.env
 require('dotenv').config();
 
@@ -41,7 +42,7 @@ app.use((req, res, next) => {
 // MAKE SURE TO COMMENT OUT THE ABOVE LINE AFTER TESTING
 
 // GET /api/user/favorites
-app.get('/api/user/favorites', async (req, res) => {
+app.get('/api/user/favorites', async(req, res) => {
   const userId = req.session.userId; //
 
   if (!userId) {
@@ -103,6 +104,7 @@ app.get('/', (req, res) => {
   getAllUsers.getUsers()
     .then(users => {
       // Find the logged-in user by session
+      // eslint-disable-next-line eqeqeq
       const user = users.find(u => u.id == req.session.user);
       const templateVars = { users, user, apiKey };
       res.render('index', templateVars);
