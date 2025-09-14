@@ -9,7 +9,8 @@
     "db:reset": "node bin/resetdb.js",
     "server": "nodemon -L --ignore public/",
     "sass": "sass --watch --no-source-map ./styles:./public/styles",
-    "local": "concurrently 'npm:server' 'npm:sass'"
+    "local": "concurrently 'npm:server' 'npm:sass'",
+    "build": "sass ./styles:./public/styles"
   },
   "author": "Lighthouse Labs",
   "license": "ISC",

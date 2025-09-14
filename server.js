@@ -23,13 +23,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(express.json());
 
-const cookieKeys = process.env.COOKIE_KEY.split(',')
+const cookieKeys = process.env.COOKIE_KEY.split(',');
 
 app.use(cookieSession({
   name: process.env.COOKIE_NAME,
   keys: cookieKeys,
   maxAge: Number(process.env.COOKIE_AGE)
-}))
+}));
 
 // Simulate testing like real user (MUST be before all routes)
 app.use((req, res, next) => {
@@ -75,8 +75,8 @@ const usersRoutes = require('./routes/users');
 const createMapRoutes = require('./routes/create');
 const exploreMapRoutes = require('./routes/explore');
 const saveFavoriteRouter = require('./routes/save-favorite');
-const logoutRoutes = require('./routes/logout')
-const markerRoutes = require('./routes/markers-api')
+const logoutRoutes = require('./routes/logout');
+const markerRoutes = require('./routes/markers-api');
 const userFavouriteRoutes = require('./routes/users_favourite');
 const apiRoutes = require('./routes/api');
 const { getFavouritedMapsByUserId } = require('./db/queries/favourites');
